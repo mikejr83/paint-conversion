@@ -10,5 +10,1217 @@
         "chineseName": "冷白",
         "series": "Model Color-70.919",
         "color": "#F6F6F8"
+    },
+    {
+        "name": "Off-White",
+        "chineseName": "",
+        "series": "Model Color-70.820",
+        "color": "#F3EDE8"
+    },
+    {
+        "name": "Ivory",
+        "chineseName": "",
+        "series": "Model Color-70.918",
+        "color": "#EAE3D3"
+    },
+    {
+        "name": "Light Flesh",
+        "chineseName": "",
+        "series": "Model Color-70.928",
+        "color": "#EED5BC"
+    },
+    {
+        "name": "Basic Skin Tone",
+        "chineseName": "",
+        "series": "Model Color-70.815",
+        "color": "#E0AF92"
+    },
+    {
+        "name": "Salmon Rose",
+        "chineseName": "",
+        "series": "Model Color-70.835",
+        "color": "#D79381"
+    },
+    {
+        "name": "German Orange",
+        "chineseName": "",
+        "series": "Model Color-70.805",
+        "color": "#AF6758"
+    },
+    {
+        "name": "Old Rose",
+        "chineseName": "",
+        "series": "Model Color-70.944",
+        "color": "#B17172"
+    },
+    {
+        "name": "Brown Rose",
+        "chineseName": "",
+        "series": "Model Color-70.803",
+        "color": "#956862"
+    },
+    {
+        "name": "Dark Rose",
+        "chineseName": "",
+        "series": "Model Color-70.745",
+        "color": "#7A5553"
+    },
+    {
+        "name": "Sunny Skin Tone",
+        "chineseName": "",
+        "series": "Model Color-70.845",
+        "color": "#E19A56"
+    },
+    {
+        "name": "Beige Red",
+        "chineseName": "",
+        "series": "Model Color-70.804",
+        "color": "#A77251"
+    },
+    {
+        "name": "Cork Brown",
+        "chineseName": "",
+        "series": "Model Color-70.843",
+        "color": "#9A7153"
+    },
+    {
+        "name": "Brown Sand",
+        "chineseName": "",
+        "series": "Model Color-70.876",
+        "color": "#8A6448"
+    },
+    {
+        "name": "Chestnut Brown",
+        "chineseName": "",
+        "series": "Model Color-70.746",
+        "color": "#5B4138"
+    },
+    {
+        "name": "Flat Flesh",
+        "chineseName": "",
+        "series": "Model Color-70.955",
+        "color": "#D59D64"
+    },
+    {
+        "name": "Dark Flesh",
+        "chineseName": "",
+        "series": "Model Color-70.927",
+        "color": "#CA964C"
+    },
+    {
+        "name": "Medium Fleshtone",
+        "chineseName": "",
+        "series": "Model Color-70.860",
+        "color": "#A87C4A"
+    },
+    {
+        "name": "Light Brown",
+        "chineseName": "",
+        "series": "Model Color-70.929",
+        "color": "#985E39"
+    },
+    {
+        "name": "Cream White",
+        "chineseName": "",
+        "series": "Model Color-70.766",
+        "color": "#E0D2C5"
+    },
+    {
+        "name": "Pale Sand",
+        "chineseName": "",
+        "series": "Model Color-70.837",
+        "color": "#DEC394"
+    },
+    {
+        "name": "Ice Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.858",
+        "color": "#E8D17F"
+    },
+    {
+        "name": "Light Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.949",
+        "color": "#F2D561"
+    },
+    {
+        "name": "Lemon Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.952",
+        "color": "#E2D346"
+    },
+    {
+        "name": "Deep Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.915",
+        "color": "#EAC944"
+    },
+    {
+        "name": "Flat Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.953",
+        "color": "#EDBD52"
+    },
+    {
+        "name": "Golden Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.948",
+        "color": "#EDAB4E"
+    },
+    {
+        "name": "Light Orange",
+        "chineseName": "",
+        "series": "Model Color-70.911",
+        "color": "#DE7A3C"
+    },
+    {
+        "name": "Bright Orange",
+        "chineseName": "",
+        "series": "Model Color-70.851",
+        "color": "#D06234"
+    },
+    {
+        "name": "Clear Orange",
+        "chineseName": "",
+        "series": "Model Color-70.956",
+        "color": "#BD4F33"
+    },
+    {
+        "name": "Vermilion",
+        "chineseName": "",
+        "series": "Model Color-70.909",
+        "color": "#B53931"
+    },
+    {
+        "name": "Carmine Red",
+        "chineseName": "",
+        "series": "Model Color-70.908",
+        "color": "#8B2C25"
+    },
+    {
+        "name": "Red",
+        "chineseName": "",
+        "series": "Model Color-70.926",
+        "color": "#702E29"
+    },
+    {
+        "name": "Faded Red",
+        "chineseName": "",
+        "series": "Model Color-70.747",
+        "color": "#AE5D53"
+    },
+    {
+        "name": "Amaranth Red",
+        "chineseName": "",
+        "series": "Model Color-70.829",
+        "color": "#C1583B"
+    },
+    {
+        "name": "Scarlet",
+        "chineseName": "",
+        "series": "Model Color-70.817",
+        "color": "#B34736"
+    },
+    {
+        "name": "Dark Vermilion",
+        "chineseName": "",
+        "series": "Model Color-70.947",
+        "color": "#A7372F"
+    },
+    {
+        "name": "Flat Red",
+        "chineseName": "",
+        "series": "Model Color-70.957",
+        "color": "#94352F"
+    },
+    {
+        "name": "Dark Red",
+        "chineseName": "",
+        "series": "Model Color-70.946",
+        "color": "#623228"
+    },
+    {
+        "name": "Black Red",
+        "chineseName": "",
+        "series": "Model Color-70.859",
+        "color": "#50312D"
+    },
+    {
+        "name": "Light Pink",
+        "chineseName": "",
+        "series": "Model Color-70.748",
+        "color": "#D591A4"
+    },
+    {
+        "name": "Pink",
+        "chineseName": "",
+        "series": "Model Color-70.958",
+        "color": "#A4557A"
+    },
+    {
+        "name": "Magenta",
+        "chineseName": "",
+        "series": "Model Color-70.945",
+        "color": "#853753"
+    },
+    {
+        "name": "Sunset Red",
+        "chineseName": "",
+        "series": "Model Color-70.802",
+        "color": "#B1394C"
+    },
+    {
+        "name": "Violet Red",
+        "chineseName": "",
+        "series": "Model Color-70.812",
+        "color": "#5D373F"
+    },
+    {
+        "name": "Purple",
+        "chineseName": "",
+        "series": "Model Color-70.959",
+        "color": "#4E3351"
+    },
+    {
+        "name": "Royal Purple",
+        "chineseName": "",
+        "series": "Model Color-70.810",
+        "color": "#48293F"
+    },
+    {
+        "name": "Dark Purple",
+        "chineseName": "",
+        "series": "Model Color-70.749",
+        "color": "#412933"
+    },
+    {
+        "name": "Light Violet",
+        "chineseName": "",
+        "series": "Model Color-70.750",
+        "color": "#A594B9"
+    },
+    {
+        "name": "Blue Violet",
+        "chineseName": "",
+        "series": "Model Color-70.811",
+        "color": "#55477B"
+    },
+    {
+        "name": "Oxford Blue",
+        "chineseName": "",
+        "series": "Model Color-70.807",
+        "color": "#3E3A51"
+    },
+    {
+        "name": "Violet",
+        "chineseName": "",
+        "series": "Model Color-70.960",
+        "color": "#3A2C48"
+    },
+    {
+        "name": "Black Violet",
+        "chineseName": "",
+        "series": "Model Color-70.751",
+        "color": "#372A31"
+    },
+    {
+        "name": "Azure",
+        "chineseName": "",
+        "series": "Model Color-70.902",
+        "color": "#5E6B9A"
+    },
+    {
+        "name": "Prussian Blue",
+        "chineseName": "",
+        "series": "Model Color-70.965",
+        "color": "#3C405B"
+    },
+    {
+        "name": "Dark Prussian Blue",
+        "chineseName": "",
+        "series": "Model Color-70.899",
+        "color": "#35283F"
+    },
+    {
+        "name": "Pastel Blue",
+        "chineseName": "",
+        "series": "Model Color-70.901",
+        "color": "#657991"
+    },
+    {
+        "name": "Flat Blue",
+        "chineseName": "",
+        "series": "Model Color-70.962",
+        "color": "#414870"
+    },
+    {
+        "name": "Royal Blue",
+        "chineseName": "",
+        "series": "Model Color-70.809",
+        "color": "#254279"
+    },
+    {
+        "name": "Dark Blue",
+        "chineseName": "",
+        "series": "Model Color-70.930",
+        "color": "#2A335E"
+    },
+    {
+        "name": "Blue",
+        "chineseName": "",
+        "series": "Model Color-70.925",
+        "color": "#352D4A"
+    },
+    {
+        "name": "Infantry Blue",
+        "chineseName": "",
+        "series": "Model Color-70.752",
+        "color": "#24212E"
+    },
+    {
+        "name": "Sky Blue",
+        "chineseName": "",
+        "series": "Model Color-70.961",
+        "color": "#83B6CC"
+    },
+    {
+        "name": "Deep Sky Blue",
+        "chineseName": "",
+        "series": "Model Color-70.844",
+        "color": "#5F94C1"
+    },
+    {
+        "name": "Andrea Blue",
+        "chineseName": "",
+        "series": "Model Color-70.841",
+        "color": "#306EAA"
+    },
+    {
+        "name": "Medium Blue",
+        "chineseName": "",
+        "series": "Model Color-70.963",
+        "color": "#224069"
+    },
+    {
+        "name": "Light Blue Green",
+        "chineseName": "",
+        "series": "Model Color-70.753",
+        "color": "#4396A3"
+    },
+    {
+        "name": "Blue Green",
+        "chineseName": "",
+        "series": "Model Color-70.808",
+        "color": "#347887"
+    },
+    {
+        "name": "Light Turquoise",
+        "chineseName": "",
+        "series": "Model Color-70.840",
+        "color": "#2C6786"
+    },
+    {
+        "name": "Turquoise",
+        "chineseName": "",
+        "series": "Model Color-70.966",
+        "color": "#1E4258"
+    },
+    {
+        "name": "Dark Sea Blue",
+        "chineseName": "",
+        "series": "Model Color-70.898",
+        "color": "#282C38"
+    },
+    {
+        "name": "Continental Blue",
+        "chineseName": "",
+        "series": "Model Color-70.754",
+        "color": "#25242A"
+    },
+    {
+        "name": "Light Emerald",
+        "chineseName": "",
+        "series": "Model Color-70.755",
+        "color": "#357974"
+    },
+    {
+        "name": "Emerald",
+        "chineseName": "",
+        "series": "Model Color-70.838",
+        "color": "#29614B"
+    },
+    {
+        "name": "Green Sky",
+        "chineseName": "",
+        "series": "Model Color-70.974",
+        "color": "#7F906A"
+    },
+    {
+        "name": "Splinter Green",
+        "chineseName": "",
+        "series": "Model Color-70.756",
+        "color": "#4C6244"
+    },
+    {
+        "name": "Park Green Flat",
+        "chineseName": "",
+        "series": "Model Color-70.969",
+        "color": "#34624C"
+    },
+    {
+        "name": "Deep Green",
+        "chineseName": "",
+        "series": "Model Color-70.970",
+        "color": "#294B33"
+    },
+    {
+        "name": "Black Green",
+        "chineseName": "",
+        "series": "Model Color-70.980",
+        "color": "#2B342C"
+    },
+    {
+        "name": "Pacific Green",
+        "chineseName": "",
+        "series": "Model Color-70.757",
+        "color": "#5D6F66"
+    },
+    {
+        "name": "Gunship Green",
+        "chineseName": "",
+        "series": "Model Color-70.895",
+        "color": "#4F5843"
+    },
+    {
+        "name": "German Uniform",
+        "chineseName": "",
+        "series": "Model Color-70.920",
+        "color": "#454E43"
+    },
+    {
+        "name": "Bronze Green",
+        "chineseName": "",
+        "series": "Model Color-70.897",
+        "color": "#33392A"
+    },
+    {
+        "name": "Bright Green",
+        "chineseName": "",
+        "series": "Model Color-70.758",
+        "color": "#73824F"
+    },
+    {
+        "name": "Intermediate Green",
+        "chineseName": "",
+        "series": "Model Color-70.891",
+        "color": "#546546"
+    },
+    {
+        "name": "Fern Green",
+        "chineseName": "",
+        "series": "Model Color-70.833",
+        "color": "#495538"
+    },
+    {
+        "name": "Flat Green",
+        "chineseName": "",
+        "series": "Model Color-70.968",
+        "color": "#3B4B32"
+    },
+    {
+        "name": "Camouflage Dark Green",
+        "chineseName": "",
+        "series": "Model Color-70.979",
+        "color": "#293024"
+    },
+    {
+        "name": "Yellow Green",
+        "chineseName": "",
+        "series": "Model Color-70.954",
+        "color": "#DEDE52"
+    },
+    {
+        "name": "Lime Green",
+        "chineseName": "",
+        "series": "Model Color-70.827",
+        "color": "#839444"
+    },
+    {
+        "name": "Olive Green",
+        "chineseName": "",
+        "series": "Model Color-70.967",
+        "color": "#55623D"
+    },
+    {
+        "name": "Uniform Green",
+        "chineseName": "",
+        "series": "Model Color-70.922",
+        "color": "#4C5234"
+    },
+    {
+        "name": "Medium Olive",
+        "chineseName": "",
+        "series": "Model Color-70.850",
+        "color": "#434E35"
+    },
+    {
+        "name": "Luftwaffe Green",
+        "chineseName": "",
+        "series": "Model Color-70.823",
+        "color": "#3A3F28"
+    },
+    {
+        "name": "Military Green",
+        "chineseName": "",
+        "series": "Model Color-70.975",
+        "color": "#444436"
+    },
+    {
+        "name": "Pastel Green",
+        "chineseName": "",
+        "series": "Model Color-70.885",
+        "color": "#F3EDE8"
+    },
+    {
+        "name": "Green Grey",
+        "chineseName": "",
+        "series": "Model Color-70.886",
+        "color": "#656351"
+    },
+    {
+        "name": "German Fieldgrey WWII",
+        "chineseName": "",
+        "series": "Model Color-70.830",
+        "color": "#56533E"
+    },
+    {
+        "name": "German Tank Crew",
+        "chineseName": "",
+        "series": "Model Color-70.759",
+        "color": "#534B40"
+    },
+    {
+        "name": "Yellow Olive",
+        "chineseName": "",
+        "series": "Model Color-70.892",
+        "color": "#393B33"
+    },
+    {
+        "name": "Extra Dark Green",
+        "chineseName": "",
+        "series": "Model Color-70.896",
+        "color": "#292A16"
+    },
+    {
+        "name": "Light Mud",
+        "chineseName": "",
+        "series": "Model Color-70.760",
+        "color": "#7B755E"
+    },
+    {
+        "name": "Russian Uniform WWII",
+        "chineseName": "",
+        "series": "Model Color-70.924",
+        "color": "#57533A"
+    },
+    {
+        "name": "US Dark Green",
+        "chineseName": "",
+        "series": "Model Color-70.893",
+        "color": "#4A4B39"
+    },
+    {
+        "name": "Refractive Green",
+        "chineseName": "",
+        "series": "Model Color-70.890",
+        "color": "#484B38"
+    },
+    {
+        "name": "Olive Grey",
+        "chineseName": "",
+        "series": "Model Color-70.888",
+        "color": "#414230"
+    },
+    {
+        "name": "Camouflage Olive Green",
+        "chineseName": "",
+        "series": "Model Color-70.894",
+        "color": "#3D3D30"
+    },
+    {
+        "name": "Camouflage Black Green",
+        "chineseName": "",
+        "series": "Model Color-70.741",
+        "color": "#31312A"
+    },
+    {
+        "name": "Deck Tan",
+        "chineseName": "",
+        "series": "Model Color-70.986",
+        "color": "#AAA392"
+    },
+    {
+        "name": "Stone Grey",
+        "chineseName": "",
+        "series": "Model Color-70.884",
+        "color": "#8A7D67"
+    },
+    {
+        "name": "Medium Grey",
+        "chineseName": "",
+        "series": "Model Color-70.987",
+        "color": "#83735C"
+    },
+    {
+        "name": "German Beige WWII",
+        "chineseName": "",
+        "series": "Model Color-70.821",
+        "color": "#776A54"
+    },
+    {
+        "name": "Khaki",
+        "chineseName": "",
+        "series": "Model Color-70.988",
+        "color": "#6D6040"
+    },
+    {
+        "name": "Grey Brown",
+        "chineseName": "",
+        "series": "Model Color-70.762",
+        "color": "#584A28"
+    },
+    {
+        "name": "Canvas",
+        "chineseName": "",
+        "series": "Model Color-70.763",
+        "color": "#4B3F24"
+    },
+    {
+        "name": "Camouflage Middle Brown",
+        "chineseName": "",
+        "series": "Model Color-70.740",
+        "color": "#4E3F25"
+    },
+    {
+        "name": "Burnt Umber",
+        "chineseName": "",
+        "series": "Model Color-70.941",
+        "color": "#4E3C30"
+    },
+    {
+        "name": "German Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.806",
+        "color": "#CAB76B"
+    },
+    {
+        "name": "Dark Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.978",
+        "color": "#8F8845"
+    },
+    {
+        "name": "Green Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.881",
+        "color": "#6D6541"
+    },
+    {
+        "name": "US Olive Drab",
+        "chineseName": "",
+        "series": "Model Color-70.887",
+        "color": "#58513E"
+    },
+    {
+        "name": "Buff",
+        "chineseName": "",
+        "series": "Model Color-70.976",
+        "color": "#D1B15D"
+    },
+    {
+        "name": "Middle Stone",
+        "chineseName": "",
+        "series": "Model Color-70.882",
+        "color": "#90804B"
+    },
+    {
+        "name": "Military Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.764",
+        "color": "#8F7836"
+    },
+    {
+        "name": "Japanese Uniform WWII",
+        "chineseName": "",
+        "series": "Model Color-70.923",
+        "color": "#99813A"
+    },
+    {
+        "name": "Green Brown",
+        "chineseName": "",
+        "series": "Model Color-70.879",
+        "color": "#7E6E3B"
+    },
+    {
+        "name": "English Uniform",
+        "chineseName": "",
+        "series": "Model Color-70.921",
+        "color": "#6B5431"
+    },
+    {
+        "name": "Medium Brown",
+        "chineseName": "",
+        "series": "Model Color-70.826",
+        "color": "#59493C"
+    },
+    {
+        "name": "Olive Brown",
+        "chineseName": "",
+        "series": "Model Color-70.889",
+        "color": "#3D3227"
+    },
+    {
+        "name": "Beige",
+        "chineseName": "",
+        "series": "Model Color-70.917",
+        "color": "#DAC07A"
+    },
+    {
+        "name": "Green Ochre",
+        "chineseName": "",
+        "series": "Model Color-70.914",
+        "color": "#9B8242"
+    },
+    {
+        "name": "Orange Ochre",
+        "chineseName": "",
+        "series": "Model Color-70.824",
+        "color": "#A68243"
+    },
+    {
+        "name": "Khaki Grey",
+        "chineseName": "",
+        "series": "Model Color-70.880",
+        "color": "#7A643E"
+    },
+    {
+        "name": "Chocolate Brown",
+        "chineseName": "",
+        "series": "Model Color-70.872",
+        "color": "#55453E"
+    },
+    {
+        "name": "Dark Sand",
+        "chineseName": "",
+        "series": "Model Color-70.847",
+        "color": "#C6A971"
+    },
+    {
+        "name": "Iraqi Sand",
+        "chineseName": "",
+        "series": "Model Color-70.819",
+        "color": "#AF9566"
+    },
+    {
+        "name": "Desert Brown",
+        "chineseName": "",
+        "series": "Model Color-70.767",
+        "color": "#A6875D"
+    },
+    {
+        "name": "Old Wood",
+        "chineseName": "",
+        "series": "Model Color-70.761",
+        "color": "#7E6E57"
+    },
+    {
+        "name": "Desert Tan",
+        "chineseName": "",
+        "series": "Model Color-70.765",
+        "color": "#B2A28B"
+    },
+    {
+        "name": "Tan Earth",
+        "chineseName": "",
+        "series": "Model Color-70.874",
+        "color": "#94765B"
+    },
+    {
+        "name": "US Field Drab",
+        "chineseName": "",
+        "series": "Model Color-70.873",
+        "color": "#7E6649"
+    },
+    {
+        "name": "BC Dark Brown",
+        "chineseName": "",
+        "series": "Model Color-70.768",
+        "color": "#725841"
+    },
+    {
+        "name": "Leather Brown",
+        "chineseName": "",
+        "series": "Model Color-70.871",
+        "color": "#564437"
+    },
+    {
+        "name": "Camouflage Black Brown",
+        "chineseName": "",
+        "series": "Model Color-70.822",
+        "color": "#3F3536"
+    },
+    {
+        "name": "Sand Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.916",
+        "color": "#E3C168"
+    },
+    {
+        "name": "Desert Yellow",
+        "chineseName": "",
+        "series": "Model Color-70.977",
+        "color": "#AF8853"
+    },
+    {
+        "name": "Mustard Brown",
+        "chineseName": "",
+        "series": "Model Color-70.769",
+        "color": "#977350"
+    },
+    {
+        "name": "New Wood",
+        "chineseName": "",
+        "series": "Model Color-70.770",
+        "color": "#856442"
+    },
+    {
+        "name": "Beige Brown",
+        "chineseName": "",
+        "series": "Model Color-70.875",
+        "color": "#7C6145"
+    },
+    {
+        "name": "Flat Earth",
+        "chineseName": "",
+        "series": "Model Color-70.983",
+        "color": "#64452F"
+    },
+    {
+        "name": "Pale Brown",
+        "chineseName": "",
+        "series": "Model Color-70.825",
+        "color": "#9B8477"
+    },
+    {
+        "name": "Saddle Brown",
+        "chineseName": "",
+        "series": "Model Color-70.940",
+        "color": "#87665D"
+    },
+    {
+        "name": "Mahogany Brown",
+        "chineseName": "",
+        "series": "Model Color-70.846",
+        "color": "#74524C"
+    },
+    {
+        "name": "Flat Brown",
+        "chineseName": "",
+        "series": "Model Color-70.984",
+        "color": "#6A423A"
+    },
+    {
+        "name": "Dark Rust",
+        "chineseName": "",
+        "series": "Model Color-70.771",
+        "color": "#382726"
+    },
+    {
+        "name": "Yellow Ochre",
+        "chineseName": "",
+        "series": "Model Color-70.913",
+        "color": "#D6AC58"
+    },
+    {
+        "name": "Gold Brown",
+        "chineseName": "",
+        "series": "Model Color-70.877",
+        "color": "#B78949"
+    },
+    {
+        "name": "Ochre Brown",
+        "chineseName": "",
+        "series": "Model Color-70.877",
+        "color": "#A37C48"
+    },
+    {
+        "name": "Orange Brown",
+        "chineseName": "",
+        "series": "Model Color-70.981",
+        "color": "#A26742"
+    },
+    {
+        "name": "Red Leather",
+        "chineseName": "",
+        "series": "Model Color-70.818",
+        "color": "#F3EDE8"
+    },
+    {
+        "name": "Cavalry Brown",
+        "chineseName": "",
+        "series": "Model Color-70.982",
+        "color": "#7C473D"
+    },
+    {
+        "name": "Burnt Red",
+        "chineseName": "",
+        "series": "Model Color-70.814",
+        "color": "#6E3F3C"
+    },
+    {
+        "name": "Hull Red",
+        "chineseName": "",
+        "series": "Model Color-70.985",
+        "color": "#573A3B"
+    },
+    {
+        "name": "White Grey",
+        "chineseName": "",
+        "series": "Model Color-70.993",
+        "color": "#E3E2E1"
+    },
+    {
+        "name": "Silver Grey",
+        "chineseName": "",
+        "series": "Model Color-70.883",
+        "color": "#D7CEC8"
+    },
+    {
+        "name": "Green Grey",
+        "chineseName": "",
+        "series": "Model Color-70.971",
+        "color": "#B6B7AD"
+    },
+    {
+        "name": "Pale Grey Blue",
+        "chineseName": "",
+        "series": "Model Color-70.907",
+        "color": "#AAB6B3"
+    },
+    {
+        "name": "Pale Blue",
+        "chineseName": "",
+        "series": "Model Color-70.906",
+        "color": "#94A3A8"
+    },
+    {
+        "name": "Light Green Blue",
+        "chineseName": "",
+        "series": "Model Color-70.972",
+        "color": "#89958F"
+    },
+    {
+        "name": "Medium Grey Blue",
+        "chineseName": "",
+        "series": "Model Color-70.772",
+        "color": "#7F9C93"
+    },
+    {
+        "name": "Grey Blue",
+        "chineseName": "",
+        "series": "Model Color-70.943",
+        "color": "#5D6D83"
+    },
+    {
+        "name": "Field Blue",
+        "chineseName": "",
+        "series": "Model Color-70.964",
+        "color": "#4E5256"
+    },
+    {
+        "name": "Luftwaffe Uniform WWII",
+        "chineseName": "",
+        "series": "Model Color-70.816",
+        "color": "#44414D"
+    },
+    {
+        "name": "Dark Grey",
+        "chineseName": "",
+        "series": "Model Color-70.994",
+        "color": "#312F32"
+    },
+    {
+        "name": "Sky Grey",
+        "chineseName": "",
+        "series": "Model Color-70.989",
+        "color": "#AAACAD"
+    },
+    {
+        "name": "Light Grey",
+        "chineseName": "",
+        "series": "Model Color-70.990",
+        "color": "#919394"
+    },
+    {
+        "name": "Blue Grey Pale",
+        "chineseName": "",
+        "series": "Model Color-70.905",
+        "color": "#818686"
+    },
+    {
+        "name": "Neutral Grey",
+        "chineseName": "",
+        "series": "Model Color-70.992",
+        "color": "#616260"
+    },
+    {
+        "name": "Dark Blue Grey",
+        "chineseName": "",
+        "series": "Model Color-70.867",
+        "color": "#424445"
+    },
+    {
+        "name": "Medium Sea Grey",
+        "chineseName": "",
+        "series": "Model Color-70.870",
+        "color": "#7D7C7C"
+    },
+    {
+        "name": "Dark Sea Grey",
+        "chineseName": "",
+        "series": "Model Color-70.991",
+        "color": "#6C6B6A"
+    },
+    {
+        "name": "Violet Grey",
+        "chineseName": "",
+        "series": "Model Color-70.773",
+        "color": "#5A5958"
+    },
+    {
+        "name": "Grey Green",
+        "chineseName": "",
+        "series": "Model Color-70.866",
+        "color": "#41403F"
+    },
+    {
+        "name": "Black Grey",
+        "chineseName": "",
+        "series": "Model Color-70.862",
+        "color": "#2E2823"
+    },
+    {
+        "name": "London Grey",
+        "chineseName": "",
+        "series": "Model Color-70.863",
+        "color": "#686464"
+    },
+    {
+        "name": "Basalt Grey",
+        "chineseName": "",
+        "series": "Model Color-70.869",
+        "color": "#5C5A5D"
+    },
+    {
+        "name": "Dark Sea Green",
+        "chineseName": "",
+        "series": "Model Color-70.868",
+        "color": "#4A4545"
+    },
+    {
+        "name": "German Grey",
+        "chineseName": "",
+        "series": "Model Color-70.995",
+        "color": "#2E2E2D"
+    },
+    {
+        "name": "Lavender Grey",
+        "chineseName": "",
+        "series": "Model Color-70.774",
+        "color": "#7D706F"
+    },
+    {
+        "name": "Black",
+        "chineseName": "",
+        "series": "Model Color-70.950",
+        "color": "#221D1D"
+    },
+    {
+        "name": "Glossy Black",
+        "chineseName": "",
+        "series": "Model Color-70.861",
+        "color": "#231E1E"
+    },
+    {
+        "name": "Mahogany Ink",
+        "chineseName": "",
+        "series": "Model Color-70.828",
+        "color": "#624742"
+    },
+    {
+        "name": "Smoke Ink",
+        "chineseName": "",
+        "series": "Model Color-70.939",
+        "color": "#594A46"
+    },
+    {
+        "name": "Silver",
+        "chineseName": "",
+        "series": "Model Color-70.997",
+        "color": "#939290"
+    },
+    {
+        "name": "Oily Steel",
+        "chineseName": "",
+        "series": "Model Color-70.865",
+        "color": "#474246"
+    },
+    {
+        "name": "Natural Steel",
+        "chineseName": "",
+        "series": "Model Color-70.864",
+        "color": "#535258"
+    },
+    {
+        "name": "Gunmetal",
+        "chineseName": "",
+        "series": "Model Color-70.863",
+        "color": "#322C2E"
+    },
+    {
+        "name": "Gold",
+        "chineseName": "",
+        "series": "Model Color-70.996",
+        "color": "#926A35"
+    },
+    {
+        "name": "Old Gold",
+        "chineseName": "",
+        "series": "Model Color-70.878",
+        "color": "#513922"
+    },
+    {
+        "name": "Bronze",
+        "chineseName": "",
+        "series": "Model Color-70.998",
+        "color": "#4F3D22"
+    },
+    {
+        "name": "Brass",
+        "chineseName": "",
+        "series": "Model Color-70.801",
+        "color": "#5F3D23"
+    },
+    {
+        "name": "Copper",
+        "chineseName": "",
+        "series": "Model Color-70.999",
+        "color": "#77382C"
+    },
+    {
+        "name": "Gunmetal Blue",
+        "chineseName": "",
+        "series": "Model Color-70.800",
+        "color": "#282833"
     }
 ]
