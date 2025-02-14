@@ -1,14 +1,14 @@
 [
     {
-        "name": "White",
+        "name": "WHITE – INTENSE",
         "chineseName": "白色",
-        "series": "No.3",
+        "series": "3GEN Acrylics-AK11001",
         "colourNumber": "#FFFFFF"
     },
     {
-        "name": "Dead White",
-        "chineseName": "死白",
-        "series": "No.3",
-        "color": "#FFFFFF"
+        "name": "OFFWHITE – STANDARD",
+        "chineseName": "米白色",
+        "series": "3GEN Acrylics-AK11002",
+        "color": "#F2F2E9"
     }
 ]
