@@ -1,0 +1,14 @@
+[
+    {
+        "name": "White",
+        "chineseName": "白色",
+        "series": "Game Color-72.082",
+        "colourNumber": "#FFFFFF"
+    },
+    {
+        "name": "Dead White",
+        "chineseName": "死白",
+        "series": "Game Color-72.001",
+        "color": "#FFFFFF"
+    }
+]

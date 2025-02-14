@@ -1,0 +1,14 @@
+[
+    {
+        "name": "White",
+        "chineseName": "白色",
+        "series": "Model Color-70.951",
+        "colourNumber": "#FFFFFF"
+    },
+    {
+        "name": "Cold White",
+        "chineseName": "冷白",
+        "series": "Model Color-70.919",
+        "color": "#F6F6F8"
+    }
+]
