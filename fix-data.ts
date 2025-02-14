@@ -1,10 +1,10 @@
 import { JSDOM } from 'jsdom';
 import { ensureDir, writeJSON } from 'fs-extra';
 import * as path from 'path';
-import { Paint } from './src/models/paint';
+import { Paint, PaintComparisonCollection } from './src/models/paint';
 
 const htmlFileLocation = './public';
-const jsonOutputLocation = '.public/json';
+const jsonOutputLocation = './public/json';
 
 const files = [
   {
@@ -85,8 +85,8 @@ async function WriteFile(data: any, filename: string) {
 }
 
 async function ReadData(brandOrder: string[], jsdom: JSDOM) {
-  let tableRows = jsdom.window.document.querySelectorAll('tr');
-  const allPaints: Paint[][] = [];
+  const tableRows = jsdom.window.document.querySelectorAll('tr');
+  const allPaints: PaintComparisonCollection = [];
   tableRows.forEach((row) => {
     const columns = row.querySelectorAll('td:not(.color-col)');
 
@@ -119,7 +119,7 @@ async function ReadData(brandOrder: string[], jsdom: JSDOM) {
         .replaceAll('\n', '')
         .replaceAll(/\s+/gi, ' ')
         .matchAll(
-          /^([\w\s]+\s\-?\s?([\w\s]+))\s\-\s(#[a-fA-f0-9]{6})\s*([0-9\.]+)?/gm,
+          /^([\w\s]+\s-?\s?([\w\s]+))\s-\s(#[a-fA-f0-9]{6})\s*([0-9.]+)?/gm,
         );
       let result = match.next();
       do {

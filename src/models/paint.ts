@@ -1,3 +1,5 @@
+export type PaintComparisonCollection = Paint[][];
+
 /**
  * Hash of translated names for the paint key'd off of locale code.
  */
