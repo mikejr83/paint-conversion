@@ -27,7 +27,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: npm run build -- --base-href "/paint-conversion/"
+
+      - name: Prep
+        run: chmod -R a+rX ./dist/paint-conversion/browser
 
       - name: Active Files
         uses: actions/upload-artifact@v4
