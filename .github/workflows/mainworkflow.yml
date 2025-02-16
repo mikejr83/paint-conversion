@@ -35,13 +35,14 @@ jobs:
       - name: Active Files
         uses: actions/upload-artifact@v4
         with:
-          name: NgPaintConversion
+          name: github-pages
           path: ./dist/paint-conversion/browser
           include-hidden-files: true
 
 
   # Deploy job
   deploy:
+    name: Deploy to Pages
     # Add a dependency to the build job
     needs: build
 
@@ -60,6 +61,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
-        with:
-          artifact_name: NgPaintConversion
+        uses: actions/deploy-pages@v4
