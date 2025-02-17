@@ -15,6 +15,24 @@ export class BrandsService {
         series: [],
       },
       {
+        name: "Army Painter",
+        key: "ARMY_PAINTER",
+        filename: "army-painter.json",
+        series: []
+      },
+      {
+        name: " Vallejo Model Color",
+        key: "VALLEJO_MODEL_COLOR",
+        filename: "vallejo-model.json",
+        series: []
+      },
+      {
+        name: " Vallejo Game Color",
+        key: "VALLEJO_GAME_COLOR",
+        filename: "vallejo-game.json",
+        series: []
+      },
+      {
         name: 'P3',
         key: 'P3',
         filename: 'p3.json',

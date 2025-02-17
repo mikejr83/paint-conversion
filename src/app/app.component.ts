@@ -26,8 +26,6 @@ import { MatSelectModule } from '@angular/material/select';
 export class AppComponent {
   title = 'paint-conversion';
 
-  paintComparisonCollection;
-
   createIssueHref;
   createFeatureRequestHref;
   createNewPaintRequestHref;
@@ -36,20 +34,6 @@ export class AppComponent {
     private paintsService: PaintsService,
     private store: Store,
   ) {
-    this.paintComparisonCollection = toSignal(
-      combineLatest([
-        store.select(selectCurrentBrand),
-        store.select(selectPaintState),
-      ]).pipe(
-        filter(([brand]) => !!brand),
-        filter(([_brand, paintState]) => !!paintState.collections),
-        map(([brand, paintState]) => {
-          const paintCollection = paintState.collections[brand!.key];
-          return paintCollection;
-        }),
-      ),
-    );
-
     const issueBody = `# General Issue
 
 *Please make sure to set a meaningful title!*
