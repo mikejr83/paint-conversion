@@ -1,18 +1,11 @@
 import { createSelector } from '@ngrx/store';
 import { selectPaintState } from '../reducers';
 
-export const selectCurrentBrand = createSelector(
-  selectPaintState,
-  (state) => state.selectedBrand,
-);
-
-export const selectPaintsForCurrentBrand = createSelector(
-  selectPaintState,
-  (state) => {
-    if (state.selectedBrand) {
-      return state.collections[state.selectedBrand];
+export const selectPaintsForCurrentBrand = (brand: string) =>
+  createSelector(selectPaintState, (state) => {
+    if (brand) {
+      return state.collections[brand];
     } else {
       return [];
     }
-  },
-);
+  });

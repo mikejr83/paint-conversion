@@ -1,0 +1,31 @@
+:host {
+  color: var(--mat-sys-primary);
+  background: var(--mat-sys-primary-container);
+}
+
+.navbar-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+
+  > .mat-mdc-button {
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+}
+
+.mat-mdc-icon-button {
+  color: inherit;
+}
+
+.github-logo {
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}

@@ -14,17 +14,10 @@ export const adapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
 
 export const initialState: PaintState = {
   collections: {},
-  selectedBrand: null,
 };
 
 export const reducer = createReducer(
   initialState,
-  on(PaintActions.loadPaints, (state, { brand }): PaintState => {
-    return {
-      ...state,
-      selectedBrand: brand,
-    };
-  }),
   on(
     PaintActions.loadPaintsComplete,
     (state, { brand, paintCollection }): PaintState => {
