@@ -1,0 +1,11 @@
+@let brands = this.allBrands();
+@if (brands) {
+  <mat-form-field>
+    <mat-label>Select a base brand</mat-label>
+    <mat-select [value]="this.selectedBrand()" (selectionChange)="selectedBrandChanged($event)">
+      @for (brand of brands; track brand) {
+        <mat-option [value]="brand">{{ brand.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

@@ -17,9 +17,12 @@ export const initialState: BrandState = adapter.getInitialState({
 export const brandReducer = createReducer(
   initialState,
   on(BrandActions.loadBrandsComplete, (state, { brands }) => {
-    return adapter.setAll(brands, {
+    return adapter.setAll(brands, state);
+  }),
+  on(BrandActions.setCurrentBrand, (state, { brand }): BrandState => {
+    return {
       ...state,
-      selectedBrand: brands.length > 0 ? brands[0].key : null,
-    });
+      selectedBrand: brand,
+    };
   }),
 );

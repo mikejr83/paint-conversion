@@ -8,9 +8,10 @@ import { Injectable } from '@angular/core';
 export class PaintsService {
   constructor(private httpClient: HttpClient) {}
 
-  loadPaints(brand: string) {
+  loadPaintsByFilename(filename: string) {
+    console.log('loading paints by filename', filename);
     return this.httpClient.get<PaintComparisonCollection>(
-      `./json/${brand}.json`,
+      `./json/${filename}`,
     );
   }
 }

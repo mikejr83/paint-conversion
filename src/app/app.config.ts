@@ -1,23 +1,26 @@
 import {
   ApplicationConfig,
   EnvironmentProviders,
+  inject,
   isDevMode,
+  provideAppInitializer,
   Provider,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { provideStore } from '@ngrx/store';
+import { provideStore, Store } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import environment from '@/environment';
 import { reducers, metaReducers } from './store/reducers';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { PaintEffects } from './store/effects/paint.effects';
+import { BrandActions } from './store/actions/brand.actions';
+import { BrandEffects } from './store/effects/brand.effects';
 
 const providers: (Provider | EnvironmentProviders)[] = [
   provideZoneChangeDetection({ eventCoalescing: true }),
@@ -25,7 +28,12 @@ const providers: (Provider | EnvironmentProviders)[] = [
   provideRouter(routes),
   provideAnimationsAsync(),
   provideStore(reducers, { metaReducers }),
-  provideEffects(PaintEffects),
+  provideEffects(BrandEffects, PaintEffects),
+  provideAppInitializer(() => {
+    const store = inject(Store);
+
+    store.dispatch(BrandActions.loadBrands());
+  },)
 ];
 
 if (isDevMode()) {
