@@ -1,7 +1,12 @@
+import { selectPaintState } from '@/app/store/reducers';
+import { selectCurrentBrand } from '@/app/store/selectors/brand.selector';
 import { Paint, PaintComparisonCollection } from '@/models/paint';
 import { Component, computed, input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { MatTableModule } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { combineLatest, filter, map } from 'rxjs';
 
 interface PaintRow {
   basePaint: Paint;
@@ -15,77 +20,107 @@ interface PaintRow {
   styleUrl: './comparison-grid.component.scss',
 })
 export class ComparisonGridComponent {
-  brand = input<string>('citadel');
-  paintComparisonCollection = input<PaintComparisonCollection>([]);
-
   paintRows;
   columns;
   displayedColumns;
 
-  constructor() {
-    this.paintRows = computed(() => {
-      const brand = this.brand();
-      const collection = this.paintComparisonCollection();
-      const rows: PaintRow[] = [];
-      collection.forEach((comparisonSet) => {
-        const comparedTo: Paint[] = [];
-        let paintRow: PaintRow | undefined;
+  constructor(store: Store) {
+    const currentState$ = combineLatest([
+      store.select(selectCurrentBrand),
+      store.select(selectPaintState),
+    ]).pipe(
+      filter(([brand, paintState]) => !!brand && !!paintState.collections),
+      map(([brand, paintState]) => {
+        return { brand, paintCollection: paintState.collections[brand!.key] };
+      }),
+    );
 
-        comparisonSet.forEach((paint) => {
-          if (paint.brand.toLocaleLowerCase() === brand.toLocaleLowerCase()) {
-            paintRow = {
-              basePaint: paint,
-              comparedTo: [],
-            };
-          } else {
-            comparedTo.push(paint);
-          }
-        });
+    this.paintRows = toSignal(
+      currentState$.pipe(
+        filter(
+          (currentState) =>
+            !!currentState.brand && !!currentState.paintCollection,
+        ),
+        map((currentState) => {
+          const rows: PaintRow[] = [];
+          currentState.paintCollection.forEach((comparisonSet) => {
+            const comparedTo: Paint[] = [];
+            let paintRow: PaintRow | undefined;
 
-        if (paintRow !== undefined) {
-          paintRow.comparedTo = comparedTo;
-          rows.push(paintRow);
-        }
-      });
+            comparisonSet.forEach((paint) => {
+              if (
+                paint.brand.toLocaleLowerCase() ===
+                currentState.brand!.name.toLocaleLowerCase()
+              ) {
+                paintRow = {
+                  basePaint: paint,
+                  comparedTo: [],
+                };
+              } else {
+                comparedTo.push(paint);
+              }
+            });
 
-      return rows;
-    });
-
-    this.displayedColumns = computed(() => {
-      const collection = this.paintComparisonCollection();
-      const columns = ['BasePaintInfo', 'BasePaintColor'];
-      if (collection && collection[0]?.length > 1) {
-        for (let i = 1; i < collection[0].length; i++) {
-          columns.push(`Comparison${i}`, `Comparison${i}Color`);
-        }
-      }
-
-      console.log('displayColumns', columns);
-
-      return columns;
-    });
-
-    this.columns = computed(() => {
-      const collection = this.paintComparisonCollection();
-      const columns = [];
-      if (collection && collection[0]?.length > 1) {
-        for (let i = 1; i < collection[0].length; i++) {
-          columns.push({
-            definition: `Comparison${i}`,
-            header: collection[0][i].brand,
-            paint: (element: PaintRow) => {
-              const index = element.comparedTo.find(
-                (p) =>
-                  p.brand.toLocaleLowerCase() ===
-                  collection[0][i].brand.toLocaleLowerCase(),
-              );
-              return index;
-            },
+            if (paintRow !== undefined) {
+              paintRow.comparedTo = comparedTo;
+              rows.push(paintRow);
+            }
           });
-        }
-      }
-      console.log('columns', columns);
-      return columns;
-    });
+
+          return rows;
+        }),
+      ),
+    );
+
+    this.displayedColumns = toSignal(
+      currentState$.pipe(
+        map((currentState) => {
+          const columns = ['BasePaintInfo', 'BasePaintColor'];
+          if (
+            currentState.paintCollection &&
+            currentState.paintCollection[0]?.length > 1
+          ) {
+            for (let i = 1; i < currentState.paintCollection[0].length; i++) {
+              columns.push(`Comparison${i}`, `Comparison${i}Color`);
+            }
+          }
+
+          console.log('displayColumns', columns);
+
+          return columns;
+        }),
+      ),
+    );
+
+    this.columns = toSignal(
+      currentState$.pipe(
+        map((currentState) => {
+          const columns = [];
+          if (
+            currentState.paintCollection &&
+            currentState.paintCollection[0]?.length > 1
+          ) {
+            for (let i = 1; i < currentState.paintCollection[0].length; i++) {
+              columns.push({
+                definition: `Comparison${i}`,
+                header: currentState.paintCollection[0][i].brand,
+                paint: (element: PaintRow) => {
+                  const index = element.comparedTo.find(
+                    (p) =>
+                      p.brand.toLocaleLowerCase() ===
+                      currentState.paintCollection[0][
+                        i
+                      ].brand.toLocaleLowerCase(),
+                  );
+                  return index;
+                },
+              });
+            }
+          }
+          console.log('columns', columns);
+          return columns;
+        }),
+      ),
+    );
   }
 }

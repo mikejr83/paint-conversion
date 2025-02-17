@@ -1,7 +1,7 @@
 @let paintComparisonRows = this.paintRows();
 @let displayedColumns = this.displayedColumns();
 
-{{ paintComparisonRows.length }}
+{{ paintComparisonRows?.length }}
 @if (paintComparisonRows && displayedColumns) {
   <table mat-table [dataSource]="paintComparisonRows">
     <ng-container matColumnDef="BasePaintInfo">
