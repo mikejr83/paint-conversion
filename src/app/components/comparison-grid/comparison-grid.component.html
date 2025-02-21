@@ -21,7 +21,7 @@
       </td>
     </ng-container>
 
-    @for (column of columns(); track column) {
+    @for (column of columns(); track column.definition) {
       <ng-container [matColumnDef]="column.definition">
         <th mat-header-cell *matHeaderCellDef>
           {{ column.header }}

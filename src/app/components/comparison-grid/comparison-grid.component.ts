@@ -1,5 +1,6 @@
 import { selectPaintState } from '@/app/store/reducers';
 import { selectCurrentBrand } from '@/app/store/selectors/brand.selector';
+import { selectPaintNameFilter } from '@/app/store/selectors/filter.selector';
 import { Paint, PaintComparisonCollection } from '@/models/paint';
 import { Component, computed, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -28,10 +29,15 @@ export class ComparisonGridComponent {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),
       store.select(selectPaintState),
+      store.select(selectPaintNameFilter),
     ]).pipe(
       filter(([brand, paintState]) => !!brand && !!paintState.collections),
-      map(([brand, paintState]) => {
-        return { brand, paintCollection: paintState.collections[brand!.key] };
+      map(([brand, paintState, paintNameFilter]) => {
+        return {
+          brand,
+          paintCollection: paintState.collections[brand!.key],
+          paintNameFilter,
+        };
       }),
     );
 
@@ -52,10 +58,17 @@ export class ComparisonGridComponent {
                 paint.brand.toLocaleLowerCase() ===
                 currentState.brand!.name.toLocaleLowerCase()
               ) {
-                paintRow = {
-                  basePaint: paint,
-                  comparedTo: [],
-                };
+                if (
+                  currentState.paintNameFilter &&
+                  paint.name.indexOf(currentState.paintNameFilter) === -1
+                ) {
+                  return;
+                } else {
+                  paintRow = {
+                    basePaint: paint,
+                    comparedTo: [],
+                  };
+                }
               } else {
                 comparedTo.push(paint);
               }
@@ -84,8 +97,6 @@ export class ComparisonGridComponent {
               columns.push(`Comparison${i}`, `Comparison${i}Color`);
             }
           }
-
-          console.log('displayColumns', columns);
 
           return columns;
         }),
@@ -117,7 +128,7 @@ export class ComparisonGridComponent {
               });
             }
           }
-          console.log('columns', columns);
+
           return columns;
         }),
       ),

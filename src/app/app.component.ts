@@ -7,9 +7,6 @@ import { PaintsService } from './services/paints.service';
 import { ComparisonGridComponent } from './components/comparison-grid/comparison-grid.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { HeaderComponent } from './components/header/header.component';
-import { selectCurrentBrand } from './store/selectors/brand.selector';
-import { selectPaintState } from './store/reducers';
-import { combineLatest, filter, map } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({

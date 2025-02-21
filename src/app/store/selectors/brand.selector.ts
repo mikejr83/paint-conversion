@@ -1,15 +1,23 @@
 import { createSelector } from '@ngrx/store';
-import { selectBrandState } from '../reducers';
+import { selectBrandState, selectFilterState } from '../reducers';
 import { adapter } from '../reducers/brand.reducer';
 
 const { selectAll } = adapter.getSelectors();
 
-export const selectCurrentBrand = createSelector(selectBrandState, (state) => {
-  if (state.selectedBrand && state.entities[state.selectedBrand]) {
-    return state.entities[state.selectedBrand];
-  } else {
-    return null;
-  }
-});
+export const selectCurrentBrand = createSelector(
+  selectBrandState,
+  selectFilterState,
+  (brandState, filterState) => {
+    if (
+      filterState.selectedBrand &&
+      brandState.entities &&
+      brandState.entities[filterState.selectedBrand]
+    ) {
+      return brandState.entities[filterState.selectedBrand];
+    } else {
+      return null;
+    }
+  },
+);
 
 export const selectAllBrands = createSelector(selectBrandState, selectAll);
