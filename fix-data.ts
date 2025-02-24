@@ -2,6 +2,13 @@ import { JSDOM } from 'jsdom';
 import { ensureDir, writeJSON } from 'fs-extra';
 import * as path from 'path';
 import { Paint, PaintComparisonCollection } from './src/models/paint';
+import {
+  armyPainter,
+  citadel,
+  p3,
+  vallejoGame,
+  vallejoModel,
+} from '@/constants/brands';
 
 const htmlFileLocation = './public';
 const jsonOutputLocation = './public/json';
@@ -9,55 +16,55 @@ const jsonOutputLocation = './public/json';
 const files = [
   {
     brandOrder: [
-      'Citadel',
-      'Vallejo_Game',
-      'Vallejo_Model',
-      'P3',
-      'Army_Painter',
+      citadel.key,
+      vallejoGame.key,
+      vallejoModel.key,
+      p3.key,
+      armyPainter.key,
     ],
     filename: 'index-old.html',
     output: 'citadel.json',
   },
   {
     brandOrder: [
-      'P3',
-      'Citadel',
-      'Vallejo_Game',
-      'Vallejo_Model',
-      'Army_Painter',
+      p3.key,
+      citadel.key,
+      vallejoGame.key,
+      vallejoModel.key,
+      armyPainter.key,
     ],
     filename: 'p3.html',
     output: 'p3.json',
   },
   {
     brandOrder: [
-      'Vallejo_Model',
-      'Citadel',
-      'Vallejo_Game',
-      'P3',
-      'Army_Painter',
+      vallejoModel.key,
+      citadel.key,
+      vallejoGame.key,
+      p3.key,
+      armyPainter.key,
     ],
     filename: 'vallejo-model.html',
     output: 'vallejo-model.json',
   },
   {
     brandOrder: [
-      'Vallejo_Game',
-      'Citadel',
-      'Vallejo_Model',
-      'P3',
-      'Army_Painter',
+      vallejoGame.key,
+      citadel.key,
+      vallejoModel.key,
+      p3.key,
+      armyPainter.key,
     ],
     filename: 'vallejo-game.html',
     output: 'vallejo-game.json',
   },
   {
     brandOrder: [
-      'Army_Painter',
-      'Citadel',
-      'Vallejo_Game',
-      'Vallejo_Model',
-      'P3',
+      armyPainter.key,
+      citadel.key,
+      vallejoGame.key,
+      vallejoModel.key,
+      p3.key,
     ],
     filename: 'army-painter.html',
     output: 'army-painter.json',

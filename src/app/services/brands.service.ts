@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Brand } from '@/models/brand';
 import { of } from 'rxjs';
+import {
+  armyPainter,
+  citadel,
+  p3,
+  vallejoGame,
+  vallejoModel,
+} from '@/constants/brands';
 
 @Injectable({
   providedIn: 'root',
@@ -9,32 +16,27 @@ export class BrandsService {
   public loadBrands() {
     const brands: Brand[] = [
       {
-        name: 'Citadel',
-        key: 'CITADEL',
+        ...citadel,
         filename: 'citadel.json',
         series: [],
       },
       {
-        name: "Army Painter",
-        key: "ARMY_PAINTER",
-        filename: "army-painter.json",
-        series: []
+        ...armyPainter,
+        filename: 'army-painter.json',
+        series: [],
       },
       {
-        name: " Vallejo Model Color",
-        key: "VALLEJO_MODEL_COLOR",
-        filename: "vallejo-model.json",
-        series: []
+        ...vallejoModel,
+        filename: 'vallejo-model.json',
+        series: [],
       },
       {
-        name: " Vallejo Game Color",
-        key: "VALLEJO_GAME_COLOR",
-        filename: "vallejo-game.json",
-        series: []
+        ...vallejoGame,
+        filename: 'vallejo-game.json',
+        series: [],
       },
       {
-        name: 'P3',
-        key: 'P3',
+        ...p3,
         filename: 'p3.json',
         series: [],
       },

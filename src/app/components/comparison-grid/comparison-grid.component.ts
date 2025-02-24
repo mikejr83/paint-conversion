@@ -56,7 +56,7 @@ export class ComparisonGridComponent {
             comparisonSet.forEach((paint) => {
               if (
                 paint.brand.toLocaleLowerCase() ===
-                currentState.brand!.name.toLocaleLowerCase()
+                currentState.brand!.key.toLocaleLowerCase()
               ) {
                 if (
                   currentState.paintNameFilter &&
@@ -73,6 +73,8 @@ export class ComparisonGridComponent {
                 comparedTo.push(paint);
               }
             });
+
+            console.log('comparisonSet', comparisonSet);
 
             if (paintRow !== undefined) {
               paintRow.comparedTo = comparedTo;
