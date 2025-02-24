@@ -1,11 +1,15 @@
 import { selectPaintState } from '@/app/store/reducers';
-import { selectCurrentBrand } from '@/app/store/selectors/brand.selector';
+import {
+  selectBrandEntities,
+  selectCurrentBrand,
+} from '@/app/store/selectors/brand.selector';
 import { selectPaintNameFilter } from '@/app/store/selectors/filter.selector';
-import { Paint, PaintComparisonCollection } from '@/models/paint';
-import { Component, computed, input } from '@angular/core';
+import { Paint } from '@/models/paint';
+import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { MatTableModule } from '@angular/material/table';
+import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import { combineLatest, filter, map } from 'rxjs';
 
@@ -74,8 +78,6 @@ export class ComparisonGridComponent {
               }
             });
 
-            console.log('comparisonSet', comparisonSet);
-
             if (paintRow !== undefined) {
               paintRow.comparedTo = comparedTo;
               rows.push(paintRow);
@@ -107,7 +109,8 @@ export class ComparisonGridComponent {
 
     this.columns = toSignal(
       currentState$.pipe(
-        map((currentState) => {
+        concatLatestFrom(() => store.select(selectBrandEntities)),
+        map(([currentState, brandEntities]) => {
           const columns = [];
           if (
             currentState.paintCollection &&
@@ -116,7 +119,8 @@ export class ComparisonGridComponent {
             for (let i = 1; i < currentState.paintCollection[0].length; i++) {
               columns.push({
                 definition: `Comparison${i}`,
-                header: currentState.paintCollection[0][i].brand,
+                header:
+                  brandEntities[currentState.paintCollection[0][i].brand]?.name,
                 paint: (element: PaintRow) => {
                   const index = element.comparedTo.find(
                     (p) =>
