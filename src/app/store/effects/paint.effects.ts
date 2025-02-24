@@ -8,7 +8,7 @@ import { filter, map, switchMap } from 'rxjs';
 import { PaintsService } from '@/app/services/paints.service';
 import { PaintActions } from '../actions/paint.actions';
 import { selectCurrentBrand } from '../selectors/brand.selector';
-import { selectBrandState } from '../reducers';
+import { selectBrandState, selectPaintState } from '../reducers';
 
 @Injectable()
 export class PaintEffects {
@@ -52,7 +52,9 @@ export class PaintEffects {
     this.selectedBrandChanged$ = createEffect(() => {
       return store.select(selectCurrentBrand).pipe(
         filter((brand) => !!brand),
-        map((brand) => {
+        concatLatestFrom(() => store.select(selectPaintState)),
+        filter(([brand, paintState]) => !paintState.collections[brand.key]),
+        map(([brand]) => {
           return PaintActions.loadPaints({
             brand: brand!.key,
           });
