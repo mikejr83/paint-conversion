@@ -1,11 +1,6 @@
 export type PaintComparisonCollection = Paint[][];
 
 /**
- * Hash of translated names for the paint key'd off of locale code.
- */
-export type TranslatedName = { [langCode: string]: string };
-
-/**
  * Represents a paint.
  */
 export interface Paint {
@@ -32,9 +27,9 @@ export interface Paint {
   /**
    * Alternative names for the paint. These are translated names of the paint.
    */
-  altNames?: TranslatedName;
+  altNames?: Record<string, string>;
   /**
    * Relative match strength to paints in a comparison set.
    */
-  matchStrength?: number;
+  matchStrength?: number | null;
 }

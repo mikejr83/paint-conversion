@@ -146,9 +146,4 @@ export class ComparisonGridComponent {
       ),
     );
   }
-
-  calculateDeltaE(basePaint: Paint, comparisonPaint: Paint) {
-    const deltaE = this.paintsService.calculateDeltaE(basePaint!, comparisonPaint);
-    return Math.round(deltaE) ;
-  }
 }

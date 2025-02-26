@@ -1,0 +1,29 @@
+[
+  {
+    "brand": "ARMY_PAINTER",
+    "altNames": { "zh-Hans": "" },
+    "name": "Abomination Gore",
+    "key": "ABOMINATION_GORE",
+    "series": "Warpaints",
+    "color": "#A33933",
+    "matchStrength": null
+  },
+  {
+    "brand": "ARMY_PAINTER",
+    "altNames": { "zh-Hans": "" },
+    "name": "Castle Grey",
+    "key": "CASTLE_GREY",
+    "series": "Warpaints",
+    "color": "#858079",
+    "matchStrength": null
+  },
+  {
+    "brand": "ARMY_PAINTER",
+    "altNames": { "zh-Hans": "" },
+    "name": "Elven Flesh",
+    "key": "ELVEN_FLESH",
+    "series": "Warpaints",
+    "color": "#FBBD93",
+    "matchStrength": null
+  }
+]

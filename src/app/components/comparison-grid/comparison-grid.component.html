@@ -45,9 +45,7 @@
               ><br />
               {{ thePaint?.color }}
             </div>
-            <div>
-              Delta E: {{ this.calculateDeltaE(row.basePaint, thePaint) }}
-            </div>
+            <div>Delta E: {{ thePaint.matchStrength }}</div>
           }
         </td>
       </ng-container>

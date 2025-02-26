@@ -1,95 +1,7 @@
 import { JSDOM } from 'jsdom';
-import { ensureDir, writeJSON } from 'fs-extra';
-import * as path from 'path';
-import { Paint, PaintComparisonCollection } from './src/models/paint';
-import {
-  armyPainter,
-  citadel,
-  p3,
-  vallejoGame,
-  vallejoModel,
-} from '@/constants/brands';
 
-const htmlFileLocation = './public';
-const jsonOutputLocation = './public/json';
-
-const files = [
-  {
-    brandOrder: [
-      citadel.key,
-      vallejoGame.key,
-      vallejoModel.key,
-      p3.key,
-      armyPainter.key,
-    ],
-    filename: 'index-old.html',
-    output: 'citadel.json',
-  },
-  {
-    brandOrder: [
-      p3.key,
-      citadel.key,
-      vallejoGame.key,
-      vallejoModel.key,
-      armyPainter.key,
-    ],
-    filename: 'p3.html',
-    output: 'p3.json',
-  },
-  {
-    brandOrder: [
-      vallejoModel.key,
-      citadel.key,
-      vallejoGame.key,
-      p3.key,
-      armyPainter.key,
-    ],
-    filename: 'vallejo-model.html',
-    output: 'vallejo-model.json',
-  },
-  {
-    brandOrder: [
-      vallejoGame.key,
-      citadel.key,
-      vallejoModel.key,
-      p3.key,
-      armyPainter.key,
-    ],
-    filename: 'vallejo-game.html',
-    output: 'vallejo-game.json',
-  },
-  {
-    brandOrder: [
-      armyPainter.key,
-      citadel.key,
-      vallejoGame.key,
-      vallejoModel.key,
-      p3.key,
-    ],
-    filename: 'army-painter.html',
-    output: 'army-painter.json',
-  },
-];
-
-async function ReadFile(filename: string) {
-  const filePath = path.join(htmlFileLocation, filename);
-
-  console.log('Loading', filePath);
-
-  const jsdom = await JSDOM.fromFile(filePath);
-
-  return jsdom;
-}
-
-async function WriteFile(data: any, filename: string) {
-  const filePath = path.join(jsonOutputLocation, filename);
-
-  console.log(`Writing data to: ${filePath}`);
-
-  await ensureDir(path.dirname(filePath));
-
-  await writeJSON(filePath, data);
-}
+import { Paint, PaintComparisonCollection } from '../models/paint';
+import { filesInfo, ReadFileToJSDOM, WriteFile } from './file-info';
 
 async function ReadData(brandOrder: string[], jsdom: JSDOM) {
   const tableRows = jsdom.window.document.querySelectorAll('tr');
@@ -158,7 +70,7 @@ async function HandleFile(
 ) {
   console.log(`Fixing data for: ${filename}`);
 
-  const file = await ReadFile(filename);
+  const file = await ReadFileToJSDOM(filename);
 
   const comparablePaints = await ReadData(brandOrder, file);
 
@@ -169,7 +81,7 @@ async function HandleFile(
 
 const tasks: Promise<void>[] = [];
 
-files.forEach((fileInfo) => {
+filesInfo.forEach((fileInfo) => {
   tasks.push(
     HandleFile(fileInfo.brandOrder, fileInfo.filename, fileInfo.output),
   );
