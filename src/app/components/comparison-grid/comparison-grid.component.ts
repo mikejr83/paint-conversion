@@ -70,7 +70,7 @@ export class ComparisonGridComponent {
               ) {
                 if (
                   currentState.paintNameFilter &&
-                  paint.name.indexOf(currentState.paintNameFilter) === -1
+                  paint.name.toLocaleLowerCase().indexOf(currentState.paintNameFilter.toLocaleLowerCase()) === -1
                 ) {
                   return;
                 } else {
