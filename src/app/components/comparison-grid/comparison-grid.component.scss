@@ -22,6 +22,16 @@
   border: 1px dashed vars.$border-color-swatch;
 }
 
+.paint-info {
+  // max-width: 150px;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // text-wrap: none;
+  .paint-name {
+    font-weight: 500;
+  }
+}
+
 :host {
   td {
     padding: 0.5rem 0.25rem;

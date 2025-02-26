@@ -13,7 +13,8 @@
     <ng-container matColumnDef="BasePaintInfo">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.basePaint.name }}<br />{{ element.basePaint.brand }} -
+        <span class="paint-name">{{ element.basePaint.name }}</span
+        ><br />{{ element.basePaint.brand }} -
         {{ element.basePaint.series }}
       </td>
     </ng-container>
@@ -38,8 +39,10 @@
         <td mat-cell *matCellDef="let row">
           @let thePaint = column.paint(row);
           @if (!!thePaint) {
-            <div>
-              <span>{{ thePaint?.series }} - </span>{{ thePaint?.name }}<br />
+            <div class="paint-info">
+              <span class="paint-name">{{ thePaint?.name }}</span
+              ><span> - {{ thePaint?.series }}</span
+              ><br />
               {{ thePaint?.color }}
             </div>
             <div>
