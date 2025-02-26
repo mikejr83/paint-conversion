@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 .total-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -6,9 +8,22 @@
 .comparison-color {
   width: 80px;
   height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .base-color {
-    width: 40px;
-    height: 40px;
+.base-color {
+  width: 40px;
+  height: 40px;
+}
+
+.bordered {
+  border: 1px dashed vars.$border-color-swatch;
+}
+
+:host {
+  td {
+    padding: 0.5rem 0.25rem;
   }
 }

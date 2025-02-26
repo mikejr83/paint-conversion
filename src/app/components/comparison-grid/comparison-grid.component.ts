@@ -31,6 +31,8 @@ export class ComparisonGridComponent {
   columns;
   displayedColumns;
 
+  borderSwatches = false;
+
   constructor(private paintsService: PaintsService, store: Store) {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),

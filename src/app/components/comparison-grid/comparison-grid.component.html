@@ -21,7 +21,10 @@
     <ng-container matColumnDef="BasePaintColor">
       <th mat-header-cell *matHeaderCellDef>Base Color</th>
       <td mat-cell *matCellDef="let element">
-        <div [style]="{ 'background-color': element.basePaint.color }">
+        <div
+          class="comparison-color"
+          [style]="{ 'background-color': element.basePaint.color }"
+        >
           &nbsp;
         </div>
       </td>
@@ -36,7 +39,7 @@
           @let thePaint = column.paint(row);
           @if (!!thePaint) {
             <div>
-              {{ thePaint?.series }} - {{ thePaint?.name }}<br />
+              <span>{{ thePaint?.series }} - </span>{{ thePaint?.name }}<br />
               {{ thePaint?.color }}
             </div>
             <div>
@@ -52,10 +55,12 @@
           @let thePaint = column.paint(row);
           <div
             class="comparison-color"
+            [class.bordered]="this.borderSwatches"
             [style]="{ 'background-color': thePaint?.color }"
           >
             <div
               class="base-color"
+              [class.bordered]="this.borderSwatches"
               [style]="{ 'background-color': row.basePaint.color }"
             >
               &nbsp;
