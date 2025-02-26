@@ -28,6 +28,7 @@
     "@ngrx/operators": "^19.0.1",
     "@ngrx/store": "^19.0.1",
     "@ngrx/store-devtools": "^19.0.1",
+    "color-convert": "^3.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -38,6 +39,7 @@
     "@angular/compiler-cli": "^19.1.0",
     "@ngrx/eslint-plugin": "^19.0.1",
     "@ngrx/schematics": "^19.0.1",
+    "@types/color-convert": "^2.0.4",
     "@types/fs-extra": "^11.0.4",
     "@types/jasmine": "~5.1.0",
     "@types/jsdom": "^21.1.7",

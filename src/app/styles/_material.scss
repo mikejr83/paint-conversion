@@ -1,0 +1,30 @@
+@use "@angular/material" as mat;
+@use "variables" as vars;
+@use "sass:map";
+
+@mixin override-all($overrides) {
+  @include base-overrides($overrides);
+  @include table-overrides($overrides);
+}
+
+@mixin base-overrides($overrides) {
+}
+
+@mixin table-overrides($overrides) {
+  .mat-mdc-table {
+    thead th.mat-mdc-header-cell {
+      background-color: vars.$table-header-background;
+      border-bottom: 0;
+
+      &:first-child {
+        border-radius: var(--mat-sys-corner-small) 0 0
+          var(--mat-sys-corner-small);
+      }
+
+      &:last-child {
+        border-radius: 0 var(--mat-sys-corner-small) var(--mat-sys-corner-small)
+          0;
+      }
+    }
+  }
+}

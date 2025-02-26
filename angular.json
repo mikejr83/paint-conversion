@@ -33,6 +33,9 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/styles/preprocess"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -109,10 +112,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "angular-eslint",
-      "@ngrx/schematics"
-    ],
+    "schematicCollections": ["angular-eslint", "@ngrx/schematics"],
     "analytics": "e53e009e-b6bf-4e80-bb16-3a74850dedd1"
   }
 }

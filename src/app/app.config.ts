@@ -21,6 +21,7 @@ import { provideEffects } from '@ngrx/effects';
 import { PaintEffects } from './store/effects/paint.effects';
 import { BrandActions } from './store/actions/brand.actions';
 import { BrandEffects } from './store/effects/brand.effects';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 const providers: (Provider | EnvironmentProviders)[] = [
   provideZoneChangeDetection({ eventCoalescing: true }),
@@ -33,7 +34,11 @@ const providers: (Provider | EnvironmentProviders)[] = [
     const store = inject(Store);
 
     store.dispatch(BrandActions.loadBrands());
-  },)
+  }),
+  {
+    provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+  },
 ];
 
 if (isDevMode()) {

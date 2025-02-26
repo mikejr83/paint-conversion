@@ -1,7 +1,13 @@
 @let paintComparisonRows = this.paintRows();
 @let displayedColumns = this.displayedColumns();
 
-{{ paintComparisonRows?.length }}
+<div class="total-container">
+  <span
+    >Total {{ this.currentBrand()?.name }} Paints:
+    {{ paintComparisonRows?.length }}</span
+  >
+</div>
+
 @if (paintComparisonRows && displayedColumns) {
   <table mat-table [dataSource]="paintComparisonRows">
     <ng-container matColumnDef="BasePaintInfo">
@@ -28,8 +34,15 @@
         </th>
         <td mat-cell *matCellDef="let row">
           @let thePaint = column.paint(row);
-          {{ thePaint?.series }} - {{ thePaint?.name }}<br />
-          {{ thePaint?.color }}
+          @if (!!thePaint) {
+            <div>
+              {{ thePaint?.series }} - {{ thePaint?.name }}<br />
+              {{ thePaint?.color }}
+            </div>
+            <div>
+              Delta E: {{ this.calculateDeltaE(row.basePaint, thePaint) }}
+            </div>
+          }
         </td>
       </ng-container>
 

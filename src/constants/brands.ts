@@ -22,3 +22,11 @@ export const p3 = {
   name: 'P3',
   key: 'P3',
 };
+
+export const current = {
+  [armyPainter.key]: armyPainter,
+  [citadel.key]: citadel,
+  [p3.key]: p3,
+  [vallejoGame.key]: vallejoGame,
+  [vallejoModel.key]: vallejoModel,
+};

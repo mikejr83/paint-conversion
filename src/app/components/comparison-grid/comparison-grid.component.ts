@@ -1,3 +1,4 @@
+import { PaintsService } from '@/app/services/paints.service';
 import { selectPaintState } from '@/app/store/reducers';
 import {
   selectBrandEntities,
@@ -25,11 +26,12 @@ interface PaintRow {
   styleUrl: './comparison-grid.component.scss',
 })
 export class ComparisonGridComponent {
+  currentBrand;
   paintRows;
   columns;
   displayedColumns;
 
-  constructor(store: Store) {
+  constructor(private paintsService: PaintsService, store: Store) {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),
       store.select(selectPaintState),
@@ -44,6 +46,8 @@ export class ComparisonGridComponent {
         };
       }),
     );
+
+    this.currentBrand = toSignal(store.select(selectCurrentBrand));
 
     this.paintRows = toSignal(
       currentState$.pipe(
@@ -139,5 +143,10 @@ export class ComparisonGridComponent {
         }),
       ),
     );
+  }
+
+  calculateDeltaE(basePaint: Paint, comparisonPaint: Paint) {
+    const deltaE = this.paintsService.calculateDeltaE(basePaint!, comparisonPaint);
+    return Math.round(deltaE) ;
   }
 }

@@ -1,21 +1,28 @@
 @let brands = this.allBrands();
 @if (brands) {
-<form [formGroup]="filterGroup">
-  <div>
-    <mat-form-field>
-      <mat-label>Select a base brand</mat-label>
-      <mat-select [value]="this.selectedBrand()" (selectionChange)="selectedBrandChanged($event)">
-        @for (brand of brands; track brand) {
-        <mat-option [value]="brand">{{ brand.name }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <mat-label>Paint Filter</mat-label>
-      <input type="text" placeholder="Paint name" matInput formControlName="paintNameFilter">
-    </mat-form-field>
-  </div>
-</form>
+  <form [formGroup]="filterGroup">
+    <div>
+      <mat-form-field>
+        <mat-label>Select a base brand</mat-label>
+        <mat-select
+          [value]="this.selectedBrand()"
+          (selectionChange)="selectedBrandChanged($event)"
+        >
+          @for (brand of brands; track brand) {
+            <mat-option [value]="brand">{{ brand.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Paint Filter</mat-label>
+        <input
+          type="text"
+          placeholder="Paint name"
+          matInput
+          formControlName="paintNameFilter"
+        />
+      </mat-form-field>
+    </div>
+  </form>
 }
