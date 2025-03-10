@@ -14,7 +14,6 @@ interface BrandData {
   paintMap: Record<string, Paint>;
 }
 
-// eslint-disable-next-line
 const globalData: Record<string, BrandData> = {};
 
 function insertSorted<T>(

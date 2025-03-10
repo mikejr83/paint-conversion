@@ -32,4 +32,8 @@ export interface Paint {
    * Relative match strength to paints in a comparison set.
    */
   matchStrength?: number | null;
+  /**
+   * UPC, item code, etc for identifying the paint at the manufacturer.
+   */
+  code?: string;
 }
