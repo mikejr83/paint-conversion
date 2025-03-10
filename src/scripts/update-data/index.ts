@@ -1,3 +1,4 @@
-export * from './create-data-from-base';
+export * from './consolidate-data';
+export * from './create-data-from';
+export * from './handle-load';
 export * from './run-comparisons';
-export * from './upload-from-data';

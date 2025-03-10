@@ -20,6 +20,7 @@ export interface FileInfo {
 export const htmlFileLocation = './public';
 export const jsonOutputLocation = './public/json';
 export const jsonDataLocation = './src/data';
+export const jsonParsedDataLocation = './src/data/from-parse';
 
 export const filesInfo: FileInfo[] = [
   {
@@ -106,12 +107,35 @@ async function DoJsonRead<T>(filePath: string) {
   }
 }
 
-export async function ReadPublicDataFile(filename: string) {
+/**
+ * Loads the parsed datafile for a paint manufacturer.
+ * @param filename Filename to read
+ * @returns JSON data
+ */
+export async function ReadParsedDataFile(filename: string) {
+  const filePath = path.join(jsonParsedDataLocation, filename);
+
+  return await DoJsonRead<Paint>(filePath);
+}
+
+/**
+ * Loads a base data file for a paint manufacturer.
+ * This is the original base data pulled from the HTML.
+ * @param filename Filename to read
+ * @returns JSON data
+ */
+export async function ReadBaseDataFile(filename: string) {
   const filePath = path.join(jsonOutputLocation, filename);
 
   return await DoJsonRead<Paint[]>(filePath);
 }
 
+/**
+ * Loads override data file for a paint manufacturer.
+ * This data takes precedence over base and parsed data.
+ * @param filename Filename to read.
+ * @returns JSON data
+ */
 export async function ReadJsonDataFile(filename: string) {
   const filePath = path.join(jsonDataLocation, filename);
 
