@@ -3,6 +3,24 @@ import { FindImages } from './read-vallejo/find-images';
 import { ParsePage } from './read-vallejo/parse-page';
 import { WriteData } from './read-vallejo/write-data';
 
+/*
+  This task extracts the data from Vallejo's site. It runs the task for Game and
+  Model Color lines. The data is output into a "raw" directory. This data is
+  intended to be used by other scripts to update the base data.
+
+  This script was developed and run against the site in March of 2025. The
+  site's layout may change in the future. If this script fails to run correctly
+  it most likely is due to the site's structure changing. The appropriate
+  methods that fetch pages and image information will need to be changed.
+
+  One note, please respect manufacturers and do not continually run scripts like
+  this against their sites over and over. These scripts contain the ability to
+  run on a single page or a collection of images. Keep this in mind when making
+  updates to the scripts. It is likely that manufacturers will change their
+  sites to make scraping much harder if scripts like this are continually run
+  against their sites.
+*/
+
 const test = false;
 
 if (!test) {
@@ -29,7 +47,7 @@ if (!test) {
       .then((imageInfos) => FetchAndProcessImages(imageInfos))
       .then((infos) =>
         WriteData(
-          'public/json/raw/vallejo-model.json',
+          'app/data/from-parse/vallejo-model.json',
           'VALLEJO_MODEL',
           'Model',
           infos,
@@ -37,7 +55,7 @@ if (!test) {
       ),
   ]);
 } else {
-  const output = 'public/json/raw/vallejo-game.test.json';
+  const output = 'app/data/from-parse/vallejo-game.test.json';
 
   const testImgs = [
     {

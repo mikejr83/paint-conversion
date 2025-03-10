@@ -45,4 +45,4 @@ dump*
 
 # Test Data
 public/json/bak
-public/json/raw/*.test.json
+src/data/**/*.test.json

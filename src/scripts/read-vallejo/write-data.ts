@@ -1,11 +1,9 @@
-import { ensureDir, writeJSON } from 'fs-extra';
-
 import { Paint } from '@/models/paint';
 
 import { ConvertNameToKey } from '../extract-data/convert-name-to-key';
+import { WriteFile } from '../file-info';
 import { ColorInfo } from './color-info';
 import { ImageInfo } from './image-info';
-import { dirname } from 'path';
 
 export async function WriteData(
   filename: string,
@@ -24,6 +22,5 @@ export async function WriteData(
     } as Paint;
   });
 
-  await ensureDir(dirname(filename));
-  await writeJSON(filename, paints);
+  await WriteFile(paints, filename);
 }
