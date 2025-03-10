@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
 
 import { PaintsService } from './services/paints.service';
@@ -8,29 +10,45 @@ import { ComparisonGridComponent } from './components/comparison-grid/comparison
 import { FilterComponent } from './components/filter/filter.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
+import { Subject, map, takeUntil } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { MobileCompareGridComponent } from './components/mobile-compare-grid/mobile-compare-grid.component';
 
 @Component({
   selector: 'app-root',
   imports: [
+    AsyncPipe,
     ComparisonGridComponent,
     FilterComponent,
     HeaderComponent,
+    MobileCompareGridComponent,
     MatSelectModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+  destroyed = new Subject<void>();
   title = 'paint-conversion';
 
   createIssueHref;
   createFeatureRequestHref;
   createNewPaintRequestHref;
 
+  isHandsetBreakpoint$;
+
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private paintsService: PaintsService,
     private store: Store,
   ) {
+    this.isHandsetBreakpoint$ = breakpointObserver
+      .observe([Breakpoints.Handset])
+      .pipe(
+        takeUntil(this.destroyed),
+        map((result) => result.matches),
+      );
+
     const issueBody = `# General Issue
 
 *Please make sure to set a meaningful title!*
@@ -71,5 +89,9 @@ export class AppComponent {
     this.createIssueHref = `https://github.com/mikejr83/paint-conversion/issues/new?body=${encodeURIComponent(issueBody)}&title=${encodeURIComponent('I Found A Problem!')}`;
     this.createFeatureRequestHref = `https://github.com/mikejr83/paint-conversion/issues/new?body=${encodeURIComponent(issueRequestBody)}&title=${encodeURIComponent('Feature Request')}`;
     this.createNewPaintRequestHref = `https://github.com/mikejr83/paint-conversion/issues/new?body=${encodeURIComponent(newPaintAdditionRequest)}&title=${encodeURIComponent('New Paint Request')}`;
+  }
+  ngOnDestroy(): void {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 }

@@ -1,0 +1,23 @@
+<ul id="paint-list">
+  @for(paintRow of this.paintRows(); track paintRow.basePaint.key) {
+  <li [style]="{ 'background-color': paintRow.basePaint.color }">
+    <p>{{paintRow.basePaint.name}}</p>
+    <div class="compared-to">
+      @for(paint of paintRow.comparedTo; track paint.brand + paint.key) {
+      <div class="comparison-color" [style]="{ 'background-color': paint.color }"
+        #tooltip="matTooltip"
+        (click)="tooltip.show()"
+        [matTooltip]="paint.brand + ' - ' + paint.name">
+        &nbsp;
+      </div>
+      }
+    </div>
+  </li>
+  @if ($index % 5 === 0 && $index !== 0) {
+  <li>
+    <a href="#paint-list">Top</a>
+  </li>
+  }
+
+  }
+</ul>
