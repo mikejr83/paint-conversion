@@ -1,0 +1,90 @@
+@let isHandsetView = this.isHandsetBreakpoint$ | async;
+<section>
+  <h1>Hobby Paint Conversion</h1>
+
+  <p>
+    This is a simple application to compare and convert between different brands
+    and series of paints. The goal is to be able to inform hobbiests to be able
+    to substitute paints from one brand for another.
+  </p>
+
+  <p>
+    This application is inspired from the original work of
+    <a
+      href="https://redgrimm.github.io/paint-conversion/index.html"
+      target="_blank"
+      >Redgrimm's Paint conversion</a
+    >
+    and after seeing
+    <a href="https://github.com/LastingN/paint-conversion" target="_blank"
+      >LastingN's fork that pulled the data into a JSON format</a
+    >. The data used to feed this application was parsed from the HTML in
+    Redgrimm's original HTML.
+  </p>
+</section>
+
+<section>
+  <h2>How-To Use</h2>
+  <p>
+    The drop-down is used to select the base paint brand. The first column shows
+    the various paints from the brand and the series from which they belong. You
+    may use the filter text box to search for a specific paint color to narrow
+    the rows in the grid. The checkboxes are for enabling the comparison paint
+    brands.
+  </p>
+</section>
+
+<app-filter></app-filter>
+
+@if (!isHandsetView) {
+  <app-comparison-grid> </app-comparison-grid>
+} @else {
+  @defer (on viewport) {
+    <app-mobile-compare-grid></app-mobile-compare-grid>
+  } @placeholder {
+    <p>Loading...</p>
+  }
+}
+<section>
+  <h2>More Info</h2>
+  <p>
+    The goal of this application is to help hobby painters find equivielent
+    paints. It's also a bit of a test bed for me (mikejr83) to play around with
+    the latest release of Angular and Angular Material. I appreciate any feeback
+    and input. This could be just as simple as sharing the site with a fellow
+    painter. It could also mean submitting a pull request with new paint data or
+    submitting an issue alerting me to a bug. Bonus points if you submit an
+    issue <strong>and</strong> follow-up with a pull request to close it!
+  </p>
+  <p>
+    The repository is located on
+    <a href="https://github.com/mikejr83/paint-conversion" target="_blank"
+      >GitHub</a
+    >.
+    <br />
+    <a [href]="this.createIssueHref" target="_blank">Log an issue!</a>
+    <br />
+    <a [href]="this.createFeatureRequestHref" target="_blank"
+      >Request a new feature!</a
+    >
+    <br />
+    <a [href]="this.createNewPaintRequestHref" target="_blank"
+      >Add a new paint!</a
+    >
+  </p>
+
+  <h2>Can I Help?</h2>
+  <p>
+    You sure can! I started this site to improve on a tool that was shown to me.
+    I looked at it as a way to keep my Angular development skills sharp outside
+    of my professional life. If you're a web developer and want to help add
+    functionality or clean-up the site then please submit issues and
+    pull-requests. If you don't do software develpment but are a painter you can
+    still help. The site's value increases as more paints are added. The
+    original data was taken as a given from Redgrimm. I do not know the extent
+    to which it is correct. I certainly don't own all these paints. Maybe you
+    do! Maybe you even have a color calibration and scanner tool! Adding this
+    data to the site or correcting existing data will help everyone that uses
+    the application.
+  </p>
+</section>

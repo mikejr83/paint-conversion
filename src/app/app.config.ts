@@ -7,7 +7,7 @@ import {
   Provider,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { provideStore, Store } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -26,7 +26,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 const providers: (Provider | EnvironmentProviders)[] = [
   provideZoneChangeDetection({ eventCoalescing: true }),
   provideHttpClient(),
-  provideRouter(routes),
+  provideRouter(routes, withComponentInputBinding()),
   provideAnimationsAsync(),
   provideStore(reducers, { metaReducers }),
   provideEffects(BrandEffects, PaintEffects),
