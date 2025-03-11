@@ -42,3 +42,7 @@ testem.log
 Thumbs.db
 
 dump*
+
+# Test Data
+public/json/bak
+src/data/**/*.test.json
