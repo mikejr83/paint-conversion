@@ -13,4 +13,9 @@ export const routes: Routes = [
         (c) => c.PaintsUtilityComponent,
       ),
   },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/error/error.component').then((c) => c.ErrorComponent),
+  },
 ];
