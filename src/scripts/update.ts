@@ -1,5 +1,3 @@
-import { writeFile } from 'fs-extra';
-
 import {
   ConsolidateData,
   CreateDataFrom,
@@ -8,37 +6,21 @@ import {
   HandleLoadParsedDataFile,
   RunComparisons,
 } from './update-data/index';
+import { WriteFile } from './file-info';
+import { BrandData } from '@/models/brand-data';
+
+const useParsedData = false;
 
 Promise.all([
   CreateDataFrom(HandleLoadBaseDataFile),
-  CreateDataFrom(HandleLoadParsedDataFile),
+  useParsedData
+    ? CreateDataFrom(HandleLoadParsedDataFile)
+    : Promise.resolve({} as Record<string, BrandData>),
   CreateDataFrom(HandleLoadJsonDataFile),
 ])
-  .then(([baseData, parsedData, overrideData]) => {
-    return ConsolidateData(baseData, parsedData, overrideData);
-  })
-  .then((globalData) => {
-    // writeFile('./dump-all.json', JSON.stringify(globalData, null, 2));
-    return RunComparisons(globalData);
-  })
-  .then((results) => {
-    console.log('Writing dump of data...');
-    return Promise.all([
-      writeFile('./dump-all.json', JSON.stringify(results.globalData, null, 2)),
-      writeFile('./dump.json', JSON.stringify(results.comparedData, null, 2)),
-    ]);
-  });
-// CreateDataFromBase()
-//   .then(() => {
-//     return UpdateFromData();
-//   })
-//   .then((globalData) => {
-//     return RunComparisons(globalData);
-//   })
-//   .then((results) => {
-//     console.log('Writing dump of data...');
-//     return Promise.all([
-//       writeFile('./dump-all.json', JSON.stringify(results.globalData, null, 2)),
-//       writeFile('./dump.json', JSON.stringify(results.comparedData, null, 2)),
-//     ]);
-//   });
+  .then(([baseData, parsedData, overrideData]) =>
+    ConsolidateData(baseData, parsedData, overrideData),
+  )
+  .then((globalData) => RunComparisons(globalData))
+  .then((results) => WriteFile(results.globalData, 'paints.json'))
+  .then(() => console.log('DONE!'));
