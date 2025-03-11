@@ -1,7 +1,7 @@
 import { Paint } from '@/models/paint';
 import { CompareBrands } from './compare-brands';
 import { filesInfo, WriteFile } from '../file-info';
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 
 export const RunComparisons = async (globalData: Record<string, BrandData>) => {
   const brands = Object.getOwnPropertyNames(globalData);

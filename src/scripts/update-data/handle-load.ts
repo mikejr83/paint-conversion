@@ -4,7 +4,7 @@ import {
   ReadBaseDataFile,
   ReadJsonDataFile,
 } from '../file-info';
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 import { HandlePaintComparison } from './handle-paint-comparison';
 
 export const HandleLoadBaseDataFile = async (

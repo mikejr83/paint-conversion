@@ -1,5 +1,5 @@
 import { FileInfo, filesInfo } from '../file-info';
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 
 export const CreateDataFrom = async (
   handleDataFile: (

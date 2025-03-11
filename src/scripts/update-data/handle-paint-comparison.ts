@@ -1,5 +1,5 @@
 import { Paint } from '@/models/paint';
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 
 export const HandlePaintComparison = async (
   globalData: Record<string, BrandData>,

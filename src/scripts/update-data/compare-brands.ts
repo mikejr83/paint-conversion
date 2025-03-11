@@ -1,5 +1,5 @@
 import { Paint } from '@/models/paint';
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 import { CalculateDeltaE } from './calc-delta-e';
 
 function insertSorted<T>(

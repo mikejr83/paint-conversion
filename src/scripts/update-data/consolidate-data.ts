@@ -1,4 +1,4 @@
-import { BrandData } from './brand-data';
+import { BrandData } from '../../models/brand-data';
 
 export const ConsolidateData = (
   baseData: Record<string, BrandData>,
