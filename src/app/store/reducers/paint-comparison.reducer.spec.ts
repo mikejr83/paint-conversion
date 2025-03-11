@@ -1,4 +1,4 @@
-import { reducer, initialState } from './paint.reducer';
+import { reducer, initialState } from './paint-comparison.reducer';
 
 describe('Paint Reducer', () => {
   describe('an unknown action', () => {

@@ -18,7 +18,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { reducers, metaReducers } from './store/reducers';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import { PaintEffects } from './store/effects/paint.effects';
+import { PaintComparisonEffects } from './store/effects/paint-comparison.effects';
 import { BrandActions } from './store/actions/brand.actions';
 import { BrandEffects } from './store/effects/brand.effects';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -29,7 +29,7 @@ const providers: (Provider | EnvironmentProviders)[] = [
   provideRouter(routes, withComponentInputBinding()),
   provideAnimationsAsync(),
   provideStore(reducers, { metaReducers }),
-  provideEffects(BrandEffects, PaintEffects),
+  provideEffects(BrandEffects, PaintComparisonEffects),
   provideAppInitializer(() => {
     const store = inject(Store);
 

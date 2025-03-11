@@ -6,18 +6,18 @@ import { Store } from '@ngrx/store';
 import { filter, map, switchMap } from 'rxjs';
 
 import { PaintsService } from '@/app/services/paints.service';
-import { PaintActions } from '../actions/paint.actions';
+import { PaintComparisonActions } from '../actions/paint-comparison.actions';
 import { selectCurrentBrand } from '../selectors/brand.selector';
 import { selectBrandState, selectPaintState } from '../reducers';
 
 @Injectable()
-export class PaintEffects {
+export class PaintComparisonEffects {
   loadPaints$;
   selectedBrandChanged$;
   constructor(actions$: Actions, store: Store, paintsService: PaintsService) {
     this.loadPaints$ = createEffect(() => {
       return actions$.pipe(
-        ofType(PaintActions.loadPaints),
+        ofType(PaintComparisonActions.loadPaints),
         filter((action) => !!action.brand),
         concatLatestFrom(() => store.select(selectBrandState)),
         map(([action, brandState]) => {
@@ -41,7 +41,7 @@ export class PaintEffects {
           );
         }),
         map((result) => {
-          return PaintActions.loadPaintsComplete({
+          return PaintComparisonActions.loadPaintsComplete({
             brand: result.brand!.key,
             paintCollection: result.paintCollection,
           });
@@ -55,7 +55,7 @@ export class PaintEffects {
         concatLatestFrom(() => store.select(selectPaintState)),
         filter(([brand, paintState]) => !paintState.collections[brand.key]),
         map(([brand]) => {
-          return PaintActions.loadPaints({
+          return PaintComparisonActions.loadPaints({
             brand: brand!.key,
           });
         }),

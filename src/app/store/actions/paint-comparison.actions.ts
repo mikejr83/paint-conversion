@@ -1,7 +1,7 @@
 import { PaintComparisonCollection } from '@/models/paint';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-export const PaintActions = createActionGroup({
+export const PaintComparisonActions = createActionGroup({
   source: 'Paint',
   events: {
     'Load Paints': props<{ brand: string }>(),

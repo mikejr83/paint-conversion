@@ -3,9 +3,12 @@ import {
   createFeatureSelector,
   MetaReducer,
 } from '@ngrx/store';
-import { PaintState } from '../state/paint.state';
+import { PaintComparisonState } from '../state/paint-comparison.state';
 
-import { paintFeatureKey, reducer as paintReducer } from './paint.reducer';
+import {
+  paintComparisonFeatureKey,
+  reducer as paintComparisonReducer,
+} from './paint-comparison.reducer';
 import { isDevMode } from '@angular/core';
 import { brandFeatureKey, brandReducer } from './brand.reducer';
 import { BrandState } from '../state/brand.state';
@@ -15,13 +18,13 @@ import { FilterState } from '../state/filter.state';
 export interface State {
   [brandFeatureKey]: BrandState;
   [filterFeatureKey]: FilterState;
-  [paintFeatureKey]: PaintState;
+  [paintComparisonFeatureKey]: PaintComparisonState;
 }
 
 export const reducers: ActionReducerMap<State> = {
   [brandFeatureKey]: brandReducer,
   [filterFeatureKey]: filterReducer,
-  [paintFeatureKey]: paintReducer,
+  [paintComparisonFeatureKey]: paintComparisonReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
@@ -30,5 +33,6 @@ export const selectBrandState =
   createFeatureSelector<BrandState>(brandFeatureKey);
 export const selectFilterState =
   createFeatureSelector<FilterState>(filterFeatureKey);
-export const selectPaintState =
-  createFeatureSelector<PaintState>(paintFeatureKey);
+export const selectPaintState = createFeatureSelector<PaintComparisonState>(
+  paintComparisonFeatureKey,
+);
