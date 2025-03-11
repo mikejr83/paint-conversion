@@ -33,9 +33,13 @@ export const ConsolidateData = (
       const overridePaint = overrideBrand.paintMap[paintKey];
 
       if (!currentPaint) {
-        console.log('adding new override paint');
+        console.log(
+          `Adding new override paint ${overridePaint.name} for ${overridePaint.brand}`,
+        );
       } else {
-        console.log('overriding', currentPaint.name);
+        console.log(
+          `Overriding ${overridePaint.name} for ${overridePaint.brand}`,
+        );
       }
       currentBrand.paintMap[paintKey] = overridePaint;
     });
