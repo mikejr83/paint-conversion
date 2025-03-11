@@ -1,5 +1,5 @@
 import { PaintsService } from '@/app/services/paints.service';
-import { selectPaintState } from '@/app/store/reducers';
+import { selectPaintComparisonState } from '@/app/store/reducers';
 import { selectCurrentBrand } from '@/app/store/selectors/brand.selector';
 import { selectPaintNameFilter } from '@/app/store/selectors/filter.selector';
 import { Paint } from '@/models/paint';
@@ -30,7 +30,7 @@ export class MobileCompareGridComponent {
   ) {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),
-      store.select(selectPaintState),
+      store.select(selectPaintComparisonState),
       store.select(selectPaintNameFilter),
     ]).pipe(
       filter(([brand, paintState]) => !!brand && !!paintState.collections),

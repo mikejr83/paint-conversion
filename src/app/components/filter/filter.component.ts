@@ -22,7 +22,7 @@ import {
 import { Brand } from '@/models/brand';
 import { BrandActions } from '@/app/store/actions/brand.actions';
 import { combineLatest, debounce, debounceTime, filter, map } from 'rxjs';
-import { selectPaintState } from '@/app/store/reducers';
+import { selectPaintComparisonState } from '@/app/store/reducers';
 import { Paint } from '@/models/paint';
 import { FilterActions } from '@/app/store/actions/filter.actions';
 

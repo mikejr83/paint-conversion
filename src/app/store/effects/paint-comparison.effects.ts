@@ -8,7 +8,7 @@ import { filter, map, switchMap } from 'rxjs';
 import { PaintsService } from '@/app/services/paints.service';
 import { PaintComparisonActions } from '../actions/paint-comparison.actions';
 import { selectCurrentBrand } from '../selectors/brand.selector';
-import { selectBrandState, selectPaintState } from '../reducers';
+import { selectBrandState, selectPaintComparisonState } from '../reducers';
 
 @Injectable()
 export class PaintComparisonEffects {
@@ -52,7 +52,7 @@ export class PaintComparisonEffects {
     this.selectedBrandChanged$ = createEffect(() => {
       return store.select(selectCurrentBrand).pipe(
         filter((brand) => !!brand),
-        concatLatestFrom(() => store.select(selectPaintState)),
+        concatLatestFrom(() => store.select(selectPaintComparisonState)),
         filter(([brand, paintState]) => !paintState.collections[brand.key]),
         map(([brand]) => {
           return PaintComparisonActions.loadPaints({

@@ -1,5 +1,5 @@
 import { PaintsService } from '@/app/services/paints.service';
-import { selectPaintState } from '@/app/store/reducers';
+import { selectPaintComparisonState } from '@/app/store/reducers';
 import {
   selectBrandEntities,
   selectCurrentBrand,
@@ -36,7 +36,7 @@ export class ComparisonGridComponent {
   constructor(private paintsService: PaintsService, store: Store) {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),
-      store.select(selectPaintState),
+      store.select(selectPaintComparisonState),
       store.select(selectPaintNameFilter),
     ]).pipe(
       filter(([brand, paintState]) => !!brand && !!paintState.collections),

@@ -12,9 +12,9 @@ export const adapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
   selectId: (paint) => `${paint.brand}_${paint.series}_${paint.name}`,
 });
 
-export const initialState: PaintComparisonState = {
+export const initialState: PaintComparisonState = adapter.getInitialState({
   collections: {},
-};
+});
 
 export const reducer = createReducer(
   initialState,
