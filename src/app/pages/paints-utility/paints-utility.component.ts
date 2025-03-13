@@ -4,15 +4,12 @@ import { selectBrandEntities } from '@/app/store/selectors/brand.selector';
 import { selectFilteredPaints } from '@/app/store/selectors/composite.selector';
 import { selectAllPaints } from '@/app/store/selectors/paint.selector';
 import { Paint } from '@/models/paint';
+import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import {
-  filter,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-paints-utility',
@@ -27,6 +24,8 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<Paint>([]);
   brands;
+
+  selection = new SelectionModel<Paint>(false);
 
   length = 50;
   pageSize = 10;
