@@ -1,19 +1,39 @@
 import { PaintActions } from '@/app/store/actions/paint.actions';
+import { selectBrandEntities } from '@/app/store/selectors/brand.selector';
 import { selectAllPaints } from '@/app/store/selectors/paint.selector';
-import { Component, OnDestroy } from '@angular/core';
+import { Paint } from '@/models/paint';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { filter, Subject, takeUntil } from 'rxjs';
+import {
+  BehaviorSubject,
+  filter,
+  ReplaySubject,
+  Subject,
+  takeUntil,
+} from 'rxjs';
 
 @Component({
   selector: 'app-paints-utility',
-  imports: [],
+  imports: [MatTableModule, MatPaginatorModule],
   templateUrl: './paints-utility.component.html',
   styleUrl: './paints-utility.component.scss',
 })
-export class PaintsUtilityComponent implements OnDestroy {
+export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
   destroyed = new Subject<void>();
 
-  constructor(store: Store) {
+  @ViewChild(MatPaginator) paginator: MatPaginator = null!;
+
+  dataSource = new MatTableDataSource<Paint>([]);
+  brands;
+
+  length = 50;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  constructor(private store: Store) {
     store
       .select(selectAllPaints)
       .pipe(
@@ -22,6 +42,18 @@ export class PaintsUtilityComponent implements OnDestroy {
       )
       .subscribe(() => {
         store.dispatch(PaintActions.loadPaints());
+      });
+
+    this.brands = store.selectSignal(selectBrandEntities);
+  }
+
+  ngAfterViewInit(): void {
+    this.store
+      .select(selectAllPaints)
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((paints) => {
+        this.dataSource.data = paints;
+        this.dataSource.paginator = this.paginator;
       });
   }
 
