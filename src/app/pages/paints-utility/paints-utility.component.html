@@ -1,5 +1,9 @@
-<p>paints-utility works!</p>
 @let brands = this.brands();
+
+@if (!!brands) {
+<app-paints-utility-filter></app-paints-utility-filter>
+}
+
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="Brand">
     <th mat-header-cell *matHeaderCellDef>Brand Name</th>
@@ -37,13 +41,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<mat-paginator
-  #paginator
-  [length]="length"
-  [pageSize]="pageSize"
-  [showFirstLastButtons]="true"
-  [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="pageIndex"
-  aria-label="Select page"
->
+<mat-paginator #paginator [length]="length" [pageSize]="pageSize" [showFirstLastButtons]="true"
+  [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
 </mat-paginator>

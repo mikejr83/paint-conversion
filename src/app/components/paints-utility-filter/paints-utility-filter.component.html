@@ -1,0 +1,15 @@
+@let brands = this.brands;
+<form [formGroup]="filterGroup">
+  <mat-form-field>
+    <mat-label>Brand</mat-label>
+    <mat-select [value]="this.selectedBrand()" (selectionChange)="selectedBrandChanged($event)">
+      @for (brand of brands(); track brand.key) {
+      <mat-option [value]="brand">{{brand.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Paint Filter</mat-label>
+    <input type="text" placeholder="Paint name" matInput formControlName="paintNameFilter" />
+  </mat-form-field>
+</form>

@@ -1,9 +1,9 @@
 import { PaintsService } from '@/app/services/paints.service';
 import { selectPaintComparisonState } from '@/app/store/reducers';
 import {
-  selectBrandEntities,
-  selectCurrentBrand,
+  selectBrandEntities
 } from '@/app/store/selectors/brand.selector';
+import { selectCurrentBrand } from '@/app/store/selectors/composite.selector';
 import { selectPaintNameFilter } from '@/app/store/selectors/filter.selector';
 import { Paint } from '@/models/paint';
 import { Component } from '@angular/core';
