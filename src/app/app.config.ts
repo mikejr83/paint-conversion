@@ -37,11 +37,19 @@ const providers: (Provider | EnvironmentProviders)[] = [
   providePersistStore<typeof reducers>({
     states: [
       {
-        key: 'paint',
+        key: 'brand',
         storage: localStorageStrategy,
       },
       {
         key: 'filter',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'paint-comparison',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'paint',
         storage: localStorageStrategy,
       },
     ],
@@ -50,7 +58,7 @@ const providers: (Provider | EnvironmentProviders)[] = [
   provideAppInitializer(() => {
     const store = inject(Store);
 
-    store.dispatch(BrandActions.loadBrands());
+    store.dispatch(BrandActions.initializeBrands());
   }),
   {
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
