@@ -23,6 +23,10 @@ import { BrandActions } from './store/actions/brand.actions';
 import { BrandEffects } from './store/effects/brand.effects';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PaintEffects } from './store/effects/paint.effects';
+import {
+  providePersistStore,
+  localStorageStrategy,
+} from '@ngrx-addons/persist-state';
 
 const providers: (Provider | EnvironmentProviders)[] = [
   provideZoneChangeDetection({ eventCoalescing: true }),
@@ -30,6 +34,18 @@ const providers: (Provider | EnvironmentProviders)[] = [
   provideRouter(routes, withComponentInputBinding()),
   provideAnimationsAsync(),
   provideStore(reducers, { metaReducers }),
+  providePersistStore<typeof reducers>({
+    states: [
+      {
+        key: 'paint',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'filter',
+        storage: localStorageStrategy,
+      },
+    ],
+  }),
   provideEffects(BrandEffects, PaintComparisonEffects, PaintEffects),
   provideAppInitializer(() => {
     const store = inject(Store);

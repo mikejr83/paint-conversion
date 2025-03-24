@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
-    "@ngrx-addons/persist-state": "^8.0.0",
+    "@ngrx-addons/persist-state": "^8.0.2",
     "@ngrx/effects": "^19.0.1",
     "@ngrx/entity": "^19.0.1",
     "@ngrx/operators": "^19.0.1",
