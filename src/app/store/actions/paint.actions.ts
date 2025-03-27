@@ -1,4 +1,5 @@
 import { BrandData } from '@/models/brand-data';
+import { Paint } from '@/models/paint';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 export const PaintActions = createActionGroup({
@@ -9,5 +10,7 @@ export const PaintActions = createActionGroup({
     'Load Paints Complete': props<{
       paintsData: Record<string, BrandData>;
     }>(),
+    'Select Paint': props<{ paint: Paint | null }>(),
+    'Update Paint': props<{ key: string, paint: Partial<Paint> }>(),
   },
 });

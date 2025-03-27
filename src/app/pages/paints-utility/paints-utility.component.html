@@ -1,7 +1,7 @@
 @let brands = this.brands();
 
 @if (!!brands) {
-<app-paints-utility-filter></app-paints-utility-filter>
+  <app-paints-utility-filter></app-paints-utility-filter>
 }
 
 <table mat-table [dataSource]="dataSource">
@@ -22,7 +22,9 @@
   <ng-container matColumnDef="PaintName">
     <th mat-header-cell *matHeaderCellDef>Paint Name</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.name }}
+      <a href="javascript:void(0);" (click)="onPaintSelect()">
+        {{ element.name }}
+      </a>
     </td>
   </ng-container>
 
@@ -38,10 +40,21 @@
   @let displayedColumns = ["Brand", "Series", "PaintName", "Color"];
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns" [class.selected]="selection.isSelected(row)"
-    (click)="selection.select(row)"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    [class.selected]="selection.isSelected(row)"
+    (click)="selection.select(row)"
+  ></tr>
 </table>
 
-<mat-paginator #paginator [length]="length" [pageSize]="pageSize" [showFirstLastButtons]="true"
-  [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
+<mat-paginator
+  #paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [showFirstLastButtons]="true"
+  [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="pageIndex"
+  aria-label="Select page"
+>
 </mat-paginator>

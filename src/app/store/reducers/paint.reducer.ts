@@ -6,8 +6,11 @@ import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 export const paintFeatureKey = 'paint';
 
+export const selectId = (paint: Partial<Paint>): string =>
+  `${paint.brand}_${paint.series}_${paint.key}`;
+
 export const adapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
-  selectId: (paint) => `${paint.brand}_${paint.series}_${paint.name}`,
+  selectId,
 });
 
 export const initialState: PaintState = adapter.getInitialState({
@@ -34,6 +37,15 @@ export const reducer = createReducer(
     });
 
     return adapter.upsertMany(paints, state);
+  }),
+  on(PaintActions.selectPaint, (state, { paint }) => {
+    return {
+      ...state,
+      selectedPaint: paint,
+    };
+  }),
+  on(PaintActions.updatePaint, (state, { key, paint }) => {
+    return adapter.updateOne({ id: key, changes: paint }, state);
   }),
 );
 
