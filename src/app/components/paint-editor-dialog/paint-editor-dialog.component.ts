@@ -101,11 +101,13 @@ export class PaintEditorDialogComponent {
       key: selectedPaint!.key,
     });
 
+    const actionProps = {
+      key,
+      paint,
+    };
+
     this.store.dispatch(
-      PaintActions.updatePaint({
-        key,
-        paint,
-      }),
+      PaintActions.updatePaint(actionProps),
     );
     this.dialogRef.close();
   }
