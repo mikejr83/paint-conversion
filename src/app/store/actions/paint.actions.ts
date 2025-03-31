@@ -12,5 +12,6 @@ export const PaintActions = createActionGroup({
     }>(),
     'Select Paint': props<{ paint: Paint | null }>(),
     'Update Paint': props<{ key: string, paint: Partial<Paint> }>(),
+    'Reset': emptyProps(),
   },
 });

@@ -38,6 +38,12 @@ export const reducer = createReducer(
 
     return adapter.upsertMany(paints, state);
   }),
+  on(PaintActions.reset, (state): PaintState => {
+    return {
+      ...state,
+      ...initialState,
+    };
+  }),
   on(PaintActions.selectPaint, (state, { paint }) => {
     return {
       ...state,

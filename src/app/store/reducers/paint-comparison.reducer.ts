@@ -30,4 +30,10 @@ export const reducer = createReducer(
       };
     },
   ),
+  on(PaintComparisonActions.reset, (state): PaintComparisonState => {
+    return {
+      ...state,
+      ...initialState,
+    };
+  }),
 );

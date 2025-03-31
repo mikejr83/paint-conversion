@@ -13,10 +13,19 @@ import { selectFilteredPaints } from '@/app/store/selectors/composite.selector';
 import { selectAllPaints } from '@/app/store/selectors/paint.selector';
 import { Paint } from '@/models/paint';
 import { PaintEditorDialogComponent } from '@/app/components/paint-editor-dialog/paint-editor-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { PaintComparisonActions } from '@/app/store/actions/paint-comparison.actions';
 
 @Component({
   selector: 'app-paints-utility',
-  imports: [MatTableModule, MatPaginatorModule, PaintsUtilityFilterComponent],
+  imports: [
+    MatButtonModule,
+    MatIcon,
+    MatTableModule,
+    MatPaginatorModule,
+    PaintsUtilityFilterComponent,
+  ],
   templateUrl: './paints-utility.component.html',
   styleUrl: './paints-utility.component.scss',
 })
@@ -83,5 +92,10 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
       height: '600px',
       width: '600px',
     });
+  }
+
+  onReset() {
+    this.store.dispatch(PaintActions.reset());
+    this.store.dispatch(PaintComparisonActions.reset());
   }
 }

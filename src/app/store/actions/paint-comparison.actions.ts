@@ -7,5 +7,6 @@ export const PaintComparisonActions = createActionGroup({
     'Load Paints': props<{ brand: string }>(),
     'Loading Paints': emptyProps(),
     'Load Paints Complete': props<{ brand: string, paintCollection: PaintComparisonCollection }>(),
+    'Reset': emptyProps(),
   },
 });
