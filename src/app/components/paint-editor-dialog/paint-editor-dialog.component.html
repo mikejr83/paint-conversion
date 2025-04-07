@@ -36,8 +36,17 @@
 >
 
 <mat-dialog-actions>
+  @let selectedPaint = this.selectedPaint();
   <button mat-flat-button (click)="onCommit()" (keydown)="onCommit()">
     Commit
+  </button>
+  <button
+    mat-stroked-button
+    (click)="onRemove()"
+    (keydown)="onRemove()"
+    [disabled]="!selectedPaint!.userAdded"
+  >
+    Remove
   </button>
   <button mat-stroked-button mat-dialog-close cdkFocusInitial>Cancel</button>
 </mat-dialog-actions>

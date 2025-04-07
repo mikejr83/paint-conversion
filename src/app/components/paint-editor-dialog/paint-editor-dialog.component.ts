@@ -46,6 +46,7 @@ export class PaintEditorDialogComponent {
   paintName;
   formGroup;
   currentColor;
+  selectedPaint;
 
   dialogRef;
   constructor(
@@ -70,15 +71,25 @@ export class PaintEditorDialogComponent {
 
     this.currentColor = toSignal(this.formGroup.get('color')!.valueChanges);
 
-    store
-      .select(selectSelectedPaint)
-      .pipe(
-        takeUntilDestroyed(),
-        filter((paint) => !!paint),
-      )
-      .subscribe((paint) => {
-        this.formGroup.patchValue(paint);
-      });
+    const selectedPaint$ = store.select(selectSelectedPaint).pipe(
+      takeUntilDestroyed(),
+      filter((paint) => !!paint),
+    );
+
+    selectedPaint$.subscribe((paint) => {
+      this.formGroup.patchValue(paint);
+    });
+
+    this.selectedPaint = toSignal(selectedPaint$);
+  }
+
+  onRemove() {
+    this.store.dispatch(
+      PaintActions.removePaint({
+        paint: this.selectedPaint()!,
+      }),
+    );
+    this.dialogRef.close();
   }
 
   async onCommit() {
@@ -86,6 +97,10 @@ export class PaintEditorDialogComponent {
     const selectedPaint = await firstValueFrom(
       this.store.select(selectSelectedPaint),
     );
+
+    if (selectedPaint!.userAdded) {
+
+    }
 
     this.store.dispatch(
       PaintActions.updatePaint({

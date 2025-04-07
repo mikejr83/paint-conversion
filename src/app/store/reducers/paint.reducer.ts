@@ -59,6 +59,16 @@ export const reducer = createReducer(
       defaultPaints: defaultPaintsState,
     };
   }),
+  on(PaintActions.removePaint, (state, { paint }) => {
+    const userPaintsState = userPaintsAdapter.removeOne(
+      selectId(paint),
+      state.userPaints,
+    );
+    return {
+      ...state,
+      userPaints: userPaintsState,
+    };
+  }),
   on(PaintActions.reset, (state): PaintState => {
     return {
       ...state,

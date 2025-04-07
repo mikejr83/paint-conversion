@@ -24,10 +24,10 @@ export const selectFilteredPaints = createSelector(
   (paints, filterState) =>
     paints.filter((p) => {
       let show = true;
-      if (!!filterState.selectedBrand) {
+      if (filterState.selectedBrand) {
         show = show && p.brand === filterState.selectedBrand;
       }
-      if (!!filterState.paintNameFilter) {
+      if (filterState.paintNameFilter) {
         show = show && p.name.indexOf(filterState.paintNameFilter) >= 0;
       }
       return show;

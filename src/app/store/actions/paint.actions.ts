@@ -13,6 +13,7 @@ export const PaintActions = createActionGroup({
     }>(),
     'Select Paint': props<{ paint: Paint | null }>(),
     'Update Paint': props<{ paint: Paint }>(),
+    'Remove Paint': props<{ paint: Paint }>(),
     Reset: emptyProps(),
   },
 });
