@@ -9,22 +9,29 @@ export const paintFeatureKey = 'paint';
 export const selectId = (paint: Partial<Paint>): string =>
   `${paint.brand}_${paint.series}_${paint.key}`;
 
-export const adapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
+const defaultPaintsAdapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
+  selectId,
+});
+const userPaintsAdapter: EntityAdapter<Paint> = createEntityAdapter<Paint>({
   selectId,
 });
 
-export const initialState: PaintState = adapter.getInitialState({
+export const initialState: PaintState = {
+  defaultPaints: defaultPaintsAdapter.getInitialState(),
+  userPaints: userPaintsAdapter.getInitialState(),
   loading: false,
   selectedPaint: null,
-});
+};
 
 export const reducer = createReducer(
   initialState,
   on(PaintActions.addPaint, (state, { paint, selected }): PaintState => {
-    return adapter.addOne(paint, {
+    const userPaintsState = userPaintsAdapter.addOne(paint, state.userPaints);
+    return {
       ...state,
+      userPaints: userPaintsState,
       selectedPaint: selected ? paint : state.selectedPaint,
-    });
+    };
   }),
   on(PaintActions.loadingPaints, (state, { loading }): PaintState => {
     return {
@@ -42,7 +49,15 @@ export const reducer = createReducer(
       });
     });
 
-    return adapter.upsertMany(paints, state);
+    const defaultPaintsState = defaultPaintsAdapter.upsertMany(
+      paints,
+      state.defaultPaints,
+    );
+
+    return {
+      ...state,
+      defaultPaints: defaultPaintsState,
+    };
   }),
   on(PaintActions.reset, (state): PaintState => {
     return {
@@ -56,18 +71,27 @@ export const reducer = createReducer(
       selectedPaint: paint,
     };
   }),
-  on(PaintActions.updatePaint, (state, { key, paint }) => {
-    return adapter.updateOne(
-      {
-        id: key,
-        changes: {
-          ...paint,
-          userModified: true,
-        },
-      },
-      state,
+  on(PaintActions.updatePaint, (state, { paint }) => {
+    const userPaintsState = userPaintsAdapter.upsertOne(
+      paint,
+      state.userPaints,
     );
+    return {
+      ...state,
+      userPaints: userPaintsState,
+    };
   }),
 );
 
-export const { selectAll, selectTotal } = adapter.getSelectors();
+export const {
+  selectAll: selectAllDefaultPaints,
+  selectIds: selectDefaultPaintsIds,
+  selectEntities: selectDefaultPaintsEntities,
+  selectTotal: selectTotalDefaultPaints,
+} = defaultPaintsAdapter.getSelectors();
+export const {
+  selectAll: selectAllUserPaints,
+  selectIds: selectUserPaintsIds,
+  selectEntities: selectUserPaintsEntities,
+  selectTotal: selectTotalUserPaints,
+} = userPaintsAdapter.getSelectors();

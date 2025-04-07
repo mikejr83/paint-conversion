@@ -1,11 +1,9 @@
 import { PaintActions } from '@/app/store/actions/paint.actions';
-import { selectId } from '@/app/store/reducers/paint.reducer';
 import {
   selectSelectedPaint,
   selectSelectedPaintKey,
   selectSelectedPaintName,
 } from '@/app/store/selectors/paint.selector';
-import { Paint } from '@/models/paint';
 import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import {
@@ -89,25 +87,15 @@ export class PaintEditorDialogComponent {
       this.store.select(selectSelectedPaint),
     );
 
-    const paint: Partial<Paint> = {
-      name: formValue.name ?? undefined,
-      series: formValue.series ?? undefined,
-      color: formValue.color ?? undefined,
-    };
-
-    const key = selectId({
-      ...paint,
-      brand: selectedPaint!.brand,
-      key: selectedPaint!.key,
-    });
-
-    const actionProps = {
-      key,
-      paint,
-    };
-
     this.store.dispatch(
-      PaintActions.updatePaint(actionProps),
+      PaintActions.updatePaint({
+        paint: {
+          ...selectedPaint!,
+          name: formValue.name!,
+          series: formValue.series!,
+          color: formValue.color!,
+        },
+      }),
     );
     this.dialogRef.close();
   }

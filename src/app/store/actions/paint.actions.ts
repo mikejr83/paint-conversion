@@ -12,7 +12,7 @@ export const PaintActions = createActionGroup({
       paintsData: Record<string, BrandData>;
     }>(),
     'Select Paint': props<{ paint: Paint | null }>(),
-    'Update Paint': props<{ key: string; paint: Partial<Paint> }>(),
+    'Update Paint': props<{ paint: Paint }>(),
     Reset: emptyProps(),
   },
 });
