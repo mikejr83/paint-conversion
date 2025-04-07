@@ -16,6 +16,8 @@ import { PaintEditorDialogComponent } from '@/app/components/paint-editor-dialog
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { PaintComparisonActions } from '@/app/store/actions/paint-comparison.actions';
+import { selectCurrentBrand } from '@/app/store/selectors/filter.selector';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-paints-utility',
@@ -23,6 +25,7 @@ import { PaintComparisonActions } from '@/app/store/actions/paint-comparison.act
     MatButtonModule,
     MatIcon,
     MatTableModule,
+    MatTooltipModule,
     MatPaginatorModule,
     PaintsUtilityFilterComponent,
   ],
@@ -36,6 +39,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<Paint>([]);
   brands;
+  selectedBrand;
 
   selection = new SelectionModel<Paint>(false);
 
@@ -59,6 +63,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
       });
 
     this.brands = store.selectSignal(selectBrandEntities);
+    this.selectedBrand = store.selectSignal(selectCurrentBrand);
 
     this.selection.changed
       .pipe(takeUntil(this.destroyed))
@@ -84,6 +89,26 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+  }
+
+  onPaintAdd() {
+    const selectedBrand = this.selectedBrand();
+    this.store.dispatch(PaintActions.addPaint({
+      paint: {
+        brand: selectedBrand!,
+        key: 'Test',
+        name: 'Test',
+        series: 'Test',
+        color: '#000000',
+        userAdded: true,
+      },
+      selected: true,
+    }))
+    this.dialog.open(PaintEditorDialogComponent, {
+      disableClose: true,
+      height: '600px',
+      width: '600px',
+    });
   }
 
   onPaintSelect() {

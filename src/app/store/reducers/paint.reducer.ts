@@ -20,6 +20,12 @@ export const initialState: PaintState = adapter.getInitialState({
 
 export const reducer = createReducer(
   initialState,
+  on(PaintActions.addPaint, (state, { paint, selected }): PaintState => {
+    return adapter.addOne(paint, {
+      ...state,
+      selectedPaint: selected ? paint : state.selectedPaint,
+    });
+  }),
   on(PaintActions.loadingPaints, (state, { loading }): PaintState => {
     return {
       ...state,
@@ -51,7 +57,16 @@ export const reducer = createReducer(
     };
   }),
   on(PaintActions.updatePaint, (state, { key, paint }) => {
-    return adapter.updateOne({ id: key, changes: paint }, state);
+    return adapter.updateOne(
+      {
+        id: key,
+        changes: {
+          ...paint,
+          userModified: true,
+        },
+      },
+      state,
+    );
   }),
 );
 

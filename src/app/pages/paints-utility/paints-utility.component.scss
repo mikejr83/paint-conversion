@@ -1,10 +1,25 @@
-table tr.selected td {
-  color: var(
-    --mat-standard-button-toggle-selected-state-text-color,
-    var(--mat-sys-on-secondary-container)
-  );
-  background-color: var(
-    --mat-standard-button-toggle-selected-state-background-color,
-    var(--mat-sys-secondary-container)
-  );
+@use "@angular/material" as mat;
+
+table {
+  tr.selected td {
+    color: var(
+      --mat-standard-button-toggle-selected-state-text-color,
+      var(--mat-sys-on-secondary-container)
+    );
+    background-color: var(
+      --mat-standard-button-toggle-selected-state-background-color,
+      var(--mat-sys-secondary-container)
+    );
+  }
+  .paint-color {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+    @include mat.elevation(2);
+  }
 }
