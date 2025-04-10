@@ -52,6 +52,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
     private dialog: MatDialog,
     private store: Store,
   ) {
+    // Trigger a load paints action if the control is loaded with no paints in state.
     store
       .select(selectAllPaints)
       .pipe(
@@ -62,7 +63,9 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
         store.dispatch(PaintActions.loadPaints());
       });
 
+    // The brands supported by the app.
     this.brands = store.selectSignal(selectBrandEntities);
+    // The currently selected brand. This is done via the filter.
     this.selectedBrand = store.selectSignal(selectCurrentBrand);
 
     this.selection.changed
@@ -96,9 +99,9 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
     this.store.dispatch(PaintActions.addPaint({
       paint: {
         brand: selectedBrand!,
-        key: 'Test',
-        name: 'Test',
-        series: 'Test',
+        key: 'NEW_PAINT',
+        name: 'New Paint',
+        series: 'Series',
         color: '#000000',
         userAdded: true,
       },

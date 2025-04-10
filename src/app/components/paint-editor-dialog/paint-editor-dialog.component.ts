@@ -53,12 +53,21 @@ export class PaintEditorDialogComponent {
     private store: Store,
     formBuilder: FormBuilder,
   ) {
-    this.paintKey = store.selectSignal(selectSelectedPaintKey);
-    this.paintName = store.selectSignal(selectSelectedPaintName);
     this.dialogRef = inject(MatDialogRef);
 
+    this.paintKey = store.selectSignal(selectSelectedPaintKey);
+    this.paintName = store.selectSignal(selectSelectedPaintName);
+    // An observable of the selected paint. This makes sure that any
+    // subscription gets a selected paint and not null or undefined.
+    const selectedPaint$ = store.select(selectSelectedPaint).pipe(
+      takeUntilDestroyed(),
+      filter((paint) => !!paint),
+    );
+
+    // Define the form group for the dialog.
     this.formGroup = formBuilder.group({
       name: ['', Validators.required],
+      key: ['', Validators.required],
       series: '',
       color: [
         '',
@@ -69,17 +78,40 @@ export class PaintEditorDialogComponent {
       ],
     });
 
+    // Create a signal from the color control's value changing.
+    // This will enable the view to "watch" the currently selected color.
     this.currentColor = toSignal(this.formGroup.get('color')!.valueChanges);
 
-    const selectedPaint$ = store.select(selectSelectedPaint).pipe(
-      takeUntilDestroyed(),
-      filter((paint) => !!paint),
-    );
+    // Always make the key upper case and remove any non-word characters.
+    this.formGroup
+      .get('name')
+      ?.valueChanges.pipe(takeUntilDestroyed())
+      .pipe(filter(() => this.formGroup.get('key')?.untouched ?? false))
+      .subscribe((name) => {
+        this.formGroup.patchValue({
+          key: name,
+        });
+      });
+    this.formGroup
+      .get('key')
+      ?.valueChanges.pipe(takeUntilDestroyed())
+      .subscribe((key) => {
+        this.formGroup.patchValue(
+          {
+            key: key?.toLocaleUpperCase().replace(/\s|\W+/g, '_'),
+          },
+          {
+            emitEvent: false,
+          },
+        );
+      });
 
+    // Patch the form's value when the selected paint changes.
     selectedPaint$.subscribe((paint) => {
       this.formGroup.patchValue(paint);
     });
 
+    //
     this.selectedPaint = toSignal(selectedPaint$);
   }
 
@@ -98,10 +130,6 @@ export class PaintEditorDialogComponent {
       this.store.select(selectSelectedPaint),
     );
 
-    if (selectedPaint!.userAdded) {
-
-    }
-
     this.store.dispatch(
       PaintActions.updatePaint({
         paint: {
@@ -109,6 +137,7 @@ export class PaintEditorDialogComponent {
           name: formValue.name!,
           series: formValue.series!,
           color: formValue.color!,
+          key: formValue.key!,
         },
       }),
     );
