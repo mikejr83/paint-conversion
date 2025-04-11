@@ -45,3 +45,5 @@ export const selectPaintComparisonState =
   createFeatureSelector<PaintComparisonState>(paintComparisonFeatureKey);
 export const selectPaintState =
   createFeatureSelector<PaintState>(paintFeatureKey);
+export const selectStatusState =
+  createFeatureSelector<StatusState>(statusFeatureKey);

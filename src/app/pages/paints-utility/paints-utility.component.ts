@@ -18,12 +18,15 @@ import { MatIcon } from '@angular/material/icon';
 import { PaintComparisonActions } from '@/app/store/actions/paint-comparison.actions';
 import { selectCurrentBrand } from '@/app/store/selectors/filter.selector';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { selectIsProcessing } from '@/app/store/selectors/status.selectors';
 
 @Component({
   selector: 'app-paints-utility',
   imports: [
     MatButtonModule,
     MatIcon,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatTooltipModule,
     MatPaginatorModule,
@@ -39,6 +42,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<Paint>([]);
   brands;
+  isProcessing;
   selectedBrand;
 
   selection = new SelectionModel<Paint>(false);
@@ -66,6 +70,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
     // The brands supported by the app.
     this.brands = store.selectSignal(selectBrandEntities);
+    this.isProcessing = store.selectSignal(selectIsProcessing);
     // The currently selected brand. This is done via the filter.
     this.selectedBrand = store.selectSignal(selectCurrentBrand);
 
@@ -104,7 +109,10 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
           key: 'NEW_PAINT',
           name: 'New Paint',
           series: 'Series',
-          color: '#000000',
+          color: `#${Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, '0')
+            .toLocaleUpperCase()}`,
           userAdded: true,
         },
         selected: true,

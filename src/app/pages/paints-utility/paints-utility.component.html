@@ -1,3 +1,8 @@
+@if (this.isProcessing()) {
+  <div class="processing-shield">
+    <mat-spinner></mat-spinner>
+  </div>
+}
 @let brands = this.brands();
 
 <button mat-stroked-button (click)="onPaintAdd()">

@@ -53,7 +53,7 @@ export class PaintEditorDialogComponent {
     private store: Store,
     formBuilder: FormBuilder,
   ) {
-    this.dialogRef = inject(MatDialogRef);
+    this.dialogRef = inject(MatDialogRef<PaintEditorDialogComponent>);
 
     this.paintKey = store.selectSignal(selectSelectedPaintKey);
     this.paintName = store.selectSignal(selectSelectedPaintName);
@@ -86,7 +86,15 @@ export class PaintEditorDialogComponent {
     this.formGroup
       .get('name')
       ?.valueChanges.pipe(takeUntilDestroyed())
-      .pipe(filter(() => this.formGroup.get('key')?.untouched ?? false))
+      .pipe(
+        filter(
+          () =>
+            (this.formGroup.get('key') &&
+              this.formGroup.get('key')?.enabled &&
+              this.formGroup.get('key')?.untouched) ??
+            false,
+        ),
+      )
       .subscribe((name) => {
         this.formGroup.patchValue({
           key: name,
@@ -109,6 +117,11 @@ export class PaintEditorDialogComponent {
     // Patch the form's value when the selected paint changes.
     selectedPaint$.subscribe((paint) => {
       this.formGroup.patchValue(paint);
+      if (paint.userAdded) {
+        this.formGroup.get('key')?.enable();
+      } else {
+        this.formGroup.get('key')?.disable();
+      }
     });
 
     //
