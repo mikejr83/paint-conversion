@@ -16,12 +16,15 @@ import { filterFeatureKey, filterReducer } from './filter.reducer';
 import { FilterState } from '../state/filter.state';
 import { paintFeatureKey, reducer as paintReducer } from './paint.reducer';
 import { PaintState } from '../state/paint.state';
+import { statusFeatureKey, statusReducer } from './status.reducer';
+import { StatusState } from '../state/status.state';
 
 export interface State {
   [brandFeatureKey]: BrandState;
   [filterFeatureKey]: FilterState;
   [paintComparisonFeatureKey]: PaintComparisonState;
   [paintFeatureKey]: PaintState;
+  [statusFeatureKey]: StatusState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -29,6 +32,7 @@ export const reducers: ActionReducerMap<State> = {
   [filterFeatureKey]: filterReducer,
   [paintComparisonFeatureKey]: paintComparisonReducer,
   [paintFeatureKey]: paintReducer,
+  [statusFeatureKey]: statusReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
