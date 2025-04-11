@@ -47,7 +47,7 @@ export class PaintEffects {
     this.paintEdited$ = actions$
       .pipe(
         takeUntilDestroyed(),
-        ofType(PaintActions.updatePaint),
+        ofType(PaintActions.updatePaint, PaintActions.removePaint),
         concatLatestFrom(() => store.select(selectAllPaints)),
       )
       .subscribe(([_action, paints]) => {
