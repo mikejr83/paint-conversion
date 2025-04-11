@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { filter, Subject, takeUntil } from 'rxjs';
+import { distinctUntilChanged, filter, Subject, takeUntil } from 'rxjs';
 
 import { PaintsUtilityFilterComponent } from '@/app/components/paints-utility-filter/paints-utility-filter.component';
 import { PaintActions } from '@/app/store/actions/paint.actions';
@@ -58,6 +58,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
       .pipe(
         takeUntil(this.destroyed),
         filter((paints) => !paints || paints.length === 0),
+        distinctUntilChanged((pre, cur) => pre.length === cur.length),
       )
       .subscribe(() => {
         store.dispatch(PaintActions.loadPaints());
@@ -96,17 +97,19 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
   onPaintAdd() {
     const selectedBrand = this.selectedBrand();
-    this.store.dispatch(PaintActions.addPaint({
-      paint: {
-        brand: selectedBrand!,
-        key: 'NEW_PAINT',
-        name: 'New Paint',
-        series: 'Series',
-        color: '#000000',
-        userAdded: true,
-      },
-      selected: true,
-    }))
+    this.store.dispatch(
+      PaintActions.addPaint({
+        paint: {
+          brand: selectedBrand!,
+          key: 'NEW_PAINT',
+          name: 'New Paint',
+          series: 'Series',
+          color: '#000000',
+          userAdded: true,
+        },
+        selected: true,
+      }),
+    );
     this.dialog.open(PaintEditorDialogComponent, {
       disableClose: true,
       height: '600px',
