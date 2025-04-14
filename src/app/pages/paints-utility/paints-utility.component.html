@@ -5,13 +5,22 @@
 }
 @let brands = this.brands();
 
-<button mat-stroked-button (click)="onPaintAdd()">
-  <mat-icon>add</mat-icon>
-  Add Paint
-</button>
-
 @if (!!brands) {
-  <app-paints-utility-filter></app-paints-utility-filter>
+  <div class="toolbar">
+    <app-paints-utility-filter></app-paints-utility-filter>
+    <button mat-stroked-button (click)="onPaintAdd()">
+      <mat-icon>add</mat-icon>
+      Add Paint
+    </button>
+    <button
+      mat-flat-button
+      (click)="onReset()"
+      [disabled]="!this.hasCustomizedPaint()"
+    >
+      <mat-icon>refresh</mat-icon>
+      Reset All
+    </button>
+  </div>
 }
 
 <table mat-table [dataSource]="dataSource">
@@ -32,7 +41,7 @@
   <ng-container matColumnDef="PaintName">
     <th mat-header-cell *matHeaderCellDef>Paint Name</th>
     <td mat-cell *matCellDef="let element">
-      <a href="javascript:void(0);" (click)="onPaintSelect()">
+      <a href="javascript:void(0);" (click)="onPaintSelect(element)">
         {{ element.name }}
       </a>
       @if (element.userAdded) {
@@ -80,9 +89,4 @@
   aria-label="Select page"
 >
 </mat-paginator>
-<div>
-  <button mat-flat-button (click)="onReset()">
-    <mat-icon>refresh</mat-icon>
-    Reset to Default
-  </button>
-</div>
+<div></div>

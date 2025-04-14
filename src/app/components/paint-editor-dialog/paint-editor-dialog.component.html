@@ -1,5 +1,5 @@
 @let paintName = this.paintName();
-@let selectedPaint = this.selectedPaint();
+@let selectedPaint = this.providedPaint();
 <h2 mat-dialog-title>{{ paintName }}</h2>
 
 <mat-dialog-content class="with-form"
@@ -12,11 +12,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Paint Key</mat-label>
-        <input
-          matInput
-          placeholder="Key"
-          formControlName="key"
-        />
+        <input matInput placeholder="Key" formControlName="key" />
         <mat-hint
           >This is unique key that identifies the paint in the brand.</mat-hint
         >
@@ -55,14 +51,19 @@
 >
 
 <mat-dialog-actions>
-  <button mat-flat-button (click)="onCommit()" (keydown)="onCommit()">
+  <button
+    mat-flat-button
+    (click)="onCommit()"
+    (keydown)="onCommit()"
+    [disabled]="this.formGroup.invalid"
+  >
     Commit
   </button>
   <button
     mat-stroked-button
     (click)="onRemove()"
     (keydown)="onRemove()"
-    [disabled]="!selectedPaint!.userAdded"
+    [disabled]="!selectedPaint!.userAdded || this.isNew()"
   >
     Remove
   </button>

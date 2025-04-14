@@ -9,6 +9,7 @@ import { PaintActions } from '../actions/paint.actions';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { concatLatestFrom } from '@ngrx/operators';
 import { selectAllPaints } from '../selectors/paint.selector';
+import { PaintComparisonActions } from '../actions/paint-comparison.actions';
 
 @Injectable()
 export class PaintEffects {
@@ -17,6 +18,8 @@ export class PaintEffects {
   loadPaints$;
 
   paintEdited$;
+
+  reset$;
   constructor(actions$: Actions, store: Store, paintsService: PaintsService) {
     this.loadingPaints$ = createEffect(() => {
       return actions$.pipe(
@@ -43,11 +46,20 @@ export class PaintEffects {
         map(() => PaintActions.loadingPaints({ loading: false })),
       );
     });
-
+    this.reset$ = createEffect(() => {
+      return actions$.pipe(
+        ofType(PaintActions.reset),
+        map(() => PaintComparisonActions.reset()),
+      );
+    });
     this.paintEdited$ = actions$
       .pipe(
         takeUntilDestroyed(),
-        ofType(PaintActions.updatePaint, PaintActions.removePaint),
+        ofType(
+          PaintActions.addPaint,
+          PaintActions.updatePaint,
+          PaintActions.removePaint,
+        ),
         concatLatestFrom(() => store.select(selectAllPaints)),
       )
       .subscribe(([_action, paints]) => {

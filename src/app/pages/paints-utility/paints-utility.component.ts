@@ -1,30 +1,39 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, filter, Subject, takeUntil } from 'rxjs';
 
+import { PaintEditorDialogComponent } from '@/app/components/paint-editor-dialog/paint-editor-dialog.component';
 import { PaintsUtilityFilterComponent } from '@/app/components/paints-utility-filter/paints-utility-filter.component';
+
 import { PaintActions } from '@/app/store/actions/paint.actions';
+
 import { selectBrandEntities } from '@/app/store/selectors/brand.selector';
 import { selectFilteredPaints } from '@/app/store/selectors/composite.selector';
-import { selectAllPaints } from '@/app/store/selectors/paint.selector';
-import { Paint } from '@/models/paint';
-import { PaintEditorDialogComponent } from '@/app/components/paint-editor-dialog/paint-editor-dialog.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { PaintComparisonActions } from '@/app/store/actions/paint-comparison.actions';
 import { selectCurrentBrand } from '@/app/store/selectors/filter.selector';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {
+  selectAllPaints,
+  selectHasCustomizedPaint,
+} from '@/app/store/selectors/paint.selector';
 import { selectIsProcessing } from '@/app/store/selectors/status.selectors';
+
+import { Paint } from '@/models/paint';
 
 @Component({
   selector: 'app-paints-utility',
   imports: [
     MatButtonModule,
+    MatCardModule,
     MatIcon,
     MatProgressSpinnerModule,
     MatTableModule,
@@ -42,6 +51,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<Paint>([]);
   brands;
+  hasCustomizedPaint;
   isProcessing;
   selectedBrand;
 
@@ -70,6 +80,7 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
 
     // The brands supported by the app.
     this.brands = store.selectSignal(selectBrandEntities);
+    this.hasCustomizedPaint = store.selectSignal(selectHasCustomizedPaint);
     this.isProcessing = store.selectSignal(selectIsProcessing);
     // The currently selected brand. This is done via the filter.
     this.selectedBrand = store.selectSignal(selectCurrentBrand);
@@ -101,40 +112,41 @@ export class PaintsUtilityComponent implements AfterViewInit, OnDestroy {
   }
 
   onPaintAdd() {
+    const newPaints = this.dataSource.data.filter((p) =>
+      p.key.startsWith('NEW_PAINT'),
+    ).length;
+
     const selectedBrand = this.selectedBrand();
-    this.store.dispatch(
-      PaintActions.addPaint({
-        paint: {
-          brand: selectedBrand!,
-          key: 'NEW_PAINT',
-          name: 'New Paint',
-          series: 'Series',
-          color: `#${Math.floor(Math.random() * 16777215)
-            .toString(16)
-            .padStart(6, '0')
-            .toLocaleUpperCase()}`,
-          userAdded: true,
-        },
-        selected: true,
-      }),
-    );
+    const newPaint: Paint = {
+      brand: selectedBrand!,
+      key: newPaints > 0 ? `NEW_PAINT_${newPaints + 1}` : 'NEW_PAINT',
+      name: 'New Paint',
+      series: 'Series',
+      color: `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0')
+        .toLocaleUpperCase()}`,
+      userAdded: true,
+    };
+
     this.dialog.open(PaintEditorDialogComponent, {
       disableClose: true,
       height: '600px',
       width: '600px',
+      data: { ...newPaint, isNew: true },
     });
   }
 
-  onPaintSelect() {
+  onPaintSelect(paint: Paint) {
     this.dialog.open(PaintEditorDialogComponent, {
       disableClose: true,
       height: '600px',
       width: '600px',
+      data: { ...paint, isNew: false },
     });
   }
 
   onReset() {
     this.store.dispatch(PaintActions.reset());
-    this.store.dispatch(PaintComparisonActions.reset());
   }
 }

@@ -1,5 +1,14 @@
 @use "@angular/material" as mat;
 
+.toolbar {
+  display: flex;
+  margin-bottom: 1rem;
+  button {
+    align-self: center;
+    margin-right: 1rem;
+  }
+}
+
 table {
   tr.selected td {
     color: var(

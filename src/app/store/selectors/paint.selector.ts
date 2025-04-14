@@ -34,6 +34,11 @@ export const selectAllPaints = createSelector(selectPaintState, (state) => {
   return paints;
 });
 
+export const selectHasCustomizedPaint = createSelector(
+  selectPaintState,
+  (state) => state.userPaints.ids.length > 0,
+);
+
 export const selectSelectedPaint = createSelector(
   selectPaintState,
   (state) => state.selectedPaint,
