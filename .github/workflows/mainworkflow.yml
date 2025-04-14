@@ -50,6 +50,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Inject Tag Manager
+        run: |
+          sed -i "S|<head>|<head>$TAG_MANAGER_HEAD" src/index.html
+          sed -i "S|<app-root>|$TAG_MANAGER_BODY<app-root>" src/index.html
+
       - name: Build
         run: npm run build -- --base-href "/paint-conversion/"
 
