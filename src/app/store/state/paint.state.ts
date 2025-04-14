@@ -1,5 +1,10 @@
-import { PaintComparisonCollection } from '@/models/paint';
+import { EntityState } from '@ngrx/entity';
+
+import { Paint } from '@/models/paint';
 
 export interface PaintState {
-  collections: { [brand: string]: PaintComparisonCollection };
+  defaultPaints: EntityState<Paint>;
+  userPaints: EntityState<Paint>;
+  loading: boolean;
+  selectedPaint: Paint | null;
 }

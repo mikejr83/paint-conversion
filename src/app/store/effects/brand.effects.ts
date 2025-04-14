@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { map, switchMap } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 
 import { BrandActions } from '../actions/brand.actions';
 import { selectAllBrands } from '../selectors/brand.selector';
@@ -13,10 +13,20 @@ import { selectAllBrands } from '../selectors/brand.selector';
   providedIn: 'root',
 })
 export class BrandEffects {
+  initializeBrands$;
   loadBrands$;
   loadBrandsComplete$;
 
   constructor(actions$: Actions, store: Store, brandsService: BrandsService) {
+    this.initializeBrands$ = createEffect(() => {
+      return actions$.pipe(
+        ofType(BrandActions.initializeBrands),
+        concatLatestFrom(() => store.select(selectAllBrands)),
+        filter(([_action, brands]) => brands.length === 0),
+        map(() => BrandActions.loadBrands()),
+      );
+    });
+
     this.loadBrands$ = createEffect(() => {
       return actions$.pipe(
         ofType(BrandActions.loadBrands),

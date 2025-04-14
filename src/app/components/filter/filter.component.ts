@@ -14,16 +14,10 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
 import { Store } from '@ngrx/store';
 
-import { PaintsService } from '@/app/services/paints.service';
-import {
-  selectAllBrands,
-  selectCurrentBrand,
-} from '@/app/store/selectors/brand.selector';
+import { selectAllBrands } from '@/app/store/selectors/brand.selector';
+import { selectCurrentBrand } from '@/app/store/selectors/composite.selector';
 import { Brand } from '@/models/brand';
-import { BrandActions } from '@/app/store/actions/brand.actions';
 import { combineLatest, debounce, debounceTime, filter, map } from 'rxjs';
-import { selectPaintState } from '@/app/store/reducers';
-import { Paint } from '@/models/paint';
 import { FilterActions } from '@/app/store/actions/filter.actions';
 
 @Component({
@@ -44,12 +38,9 @@ export class FilterComponent {
 
   filterGroup;
 
-  constructor(
-    private paintsService: PaintsService,
-    private store: Store,
-  ) {
-    this.allBrands = toSignal(store.select(selectAllBrands));
-    this.selectedBrand = toSignal(store.select(selectCurrentBrand));
+  constructor(private store: Store) {
+    this.allBrands = store.selectSignal(selectAllBrands);
+    this.selectedBrand = store.selectSignal(selectCurrentBrand);
 
     const paintNameFilter = new FormControl();
     paintNameFilter.valueChanges.pipe(debounceTime(250)).subscribe((change) => {

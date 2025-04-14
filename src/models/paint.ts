@@ -36,4 +36,13 @@ export interface Paint {
    * UPC, item code, etc for identifying the paint at the manufacturer.
    */
   code?: string;
+  /**
+   * User custom paint.
+   */
+  userAdded?: boolean;
+  /**
+   * User modified paint.
+   * This is used to determine if the paint has been modified by the user.
+   */
+  userModified?: boolean;
 }

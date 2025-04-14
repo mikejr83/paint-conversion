@@ -1,0 +1,48 @@
+@use "@angular/material" as mat;
+
+.toolbar {
+  display: flex;
+  margin-bottom: 1rem;
+  button {
+    align-self: center;
+    margin-right: 1rem;
+  }
+}
+
+table {
+  tr.selected td {
+    color: var(
+      --mat-standard-button-toggle-selected-state-text-color,
+      var(--mat-sys-on-secondary-container)
+    );
+    background-color: var(
+      --mat-standard-button-toggle-selected-state-background-color,
+      var(--mat-sys-secondary-container)
+    );
+  }
+  .paint-color {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+    @include mat.elevation(2);
+  }
+}
+
+.processing-shield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+  pointer-events: all; /* Prevent clicks on underlying elements */
+}

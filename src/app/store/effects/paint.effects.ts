@@ -1,65 +1,69 @@
 import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 
 import { PaintsService } from '@/app/services/paints.service';
 import { PaintActions } from '../actions/paint.actions';
-import { selectCurrentBrand } from '../selectors/brand.selector';
-import { selectBrandState, selectPaintState } from '../reducers';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { concatLatestFrom } from '@ngrx/operators';
+import { selectAllPaints } from '../selectors/paint.selector';
+import { PaintComparisonActions } from '../actions/paint-comparison.actions';
 
 @Injectable()
 export class PaintEffects {
+  loadingPaints$;
+  loadingPaintsComplete$;
   loadPaints$;
-  selectedBrandChanged$;
+
+  paintEdited$;
+
+  reset$;
   constructor(actions$: Actions, store: Store, paintsService: PaintsService) {
+    this.loadingPaints$ = createEffect(() => {
+      return actions$.pipe(
+        ofType(PaintActions.loadPaints),
+        map(() => PaintActions.loadingPaints({ loading: true })),
+      );
+    });
+
     this.loadPaints$ = createEffect(() => {
       return actions$.pipe(
         ofType(PaintActions.loadPaints),
-        filter((action) => !!action.brand),
-        concatLatestFrom(() => store.select(selectBrandState)),
-        map(([action, brandState]) => {
-          if (
-            action.brand &&
-            brandState.ids.length > 0 &&
-            brandState.entities &&
-            brandState.entities[action.brand]
-          ) {
-            return brandState.entities[action.brand];
-          } else {
-            return null;
-          }
-        }),
-        filter((brand) => !!brand),
-        switchMap((brand) => {
-          return paintsService.loadPaintsByFilename(brand!.filename).pipe(
-            map((paintCollection) => {
-              return { brand, paintCollection };
-            }),
-          );
-        }),
+        switchMap(() => paintsService.loadAllPaints()),
         map((result) => {
           return PaintActions.loadPaintsComplete({
-            brand: result.brand!.key,
-            paintCollection: result.paintCollection,
+            paintsData: result,
           });
         }),
       );
     });
 
-    this.selectedBrandChanged$ = createEffect(() => {
-      return store.select(selectCurrentBrand).pipe(
-        filter((brand) => !!brand),
-        concatLatestFrom(() => store.select(selectPaintState)),
-        filter(([brand, paintState]) => !paintState.collections[brand.key]),
-        map(([brand]) => {
-          return PaintActions.loadPaints({
-            brand: brand!.key,
-          });
-        }),
+    this.loadingPaintsComplete$ = createEffect(() => {
+      return actions$.pipe(
+        ofType(PaintActions.loadPaintsComplete),
+        map(() => PaintActions.loadingPaints({ loading: false })),
       );
     });
+    this.reset$ = createEffect(() => {
+      return actions$.pipe(
+        ofType(PaintActions.reset),
+        map(() => PaintComparisonActions.reset()),
+      );
+    });
+    this.paintEdited$ = actions$
+      .pipe(
+        takeUntilDestroyed(),
+        ofType(
+          PaintActions.addPaint,
+          PaintActions.updatePaint,
+          PaintActions.removePaint,
+        ),
+        concatLatestFrom(() => store.select(selectAllPaints)),
+      )
+      .subscribe(([_action, paints]) => {
+        paintsService.compareAllPaints(paints);
+      });
   }
 }

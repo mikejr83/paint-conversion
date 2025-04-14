@@ -7,7 +7,7 @@ import {
   Provider,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { provideStore, Store } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -18,22 +18,47 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { reducers, metaReducers } from './store/reducers';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import { PaintEffects } from './store/effects/paint.effects';
+import { PaintComparisonEffects } from './store/effects/paint-comparison.effects';
 import { BrandActions } from './store/actions/brand.actions';
 import { BrandEffects } from './store/effects/brand.effects';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { PaintEffects } from './store/effects/paint.effects';
+import {
+  providePersistStore,
+  localStorageStrategy,
+} from '@ngrx-addons/persist-state';
 
 const providers: (Provider | EnvironmentProviders)[] = [
   provideZoneChangeDetection({ eventCoalescing: true }),
   provideHttpClient(),
-  provideRouter(routes),
+  provideRouter(routes, withComponentInputBinding()),
   provideAnimationsAsync(),
   provideStore(reducers, { metaReducers }),
-  provideEffects(BrandEffects, PaintEffects),
+  providePersistStore<typeof reducers>({
+    states: [
+      {
+        key: 'brand',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'filter',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'paint-comparison',
+        storage: localStorageStrategy,
+      },
+      {
+        key: 'paint',
+        storage: localStorageStrategy,
+      },
+    ],
+  }),
+  provideEffects(BrandEffects, PaintComparisonEffects, PaintEffects),
   provideAppInitializer(() => {
     const store = inject(Store);
 
-    store.dispatch(BrandActions.loadBrands());
+    store.dispatch(BrandActions.initializeBrands());
   }),
   {
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
