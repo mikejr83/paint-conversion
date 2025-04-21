@@ -54,6 +54,7 @@ jobs:
         run: |
           sed -i "s|<head>|<head>$TAG_MANAGER_HEAD|" src/index.html
           sed -i "s|<app-root>|$TAG_MANAGER_BODY<app-root>|" src/index.html
+          cat src/index.html
 
       - name: Build
         run: npm run build -- --base-href "/paint-conversion/"
