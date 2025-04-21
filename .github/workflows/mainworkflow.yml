@@ -51,6 +51,9 @@ jobs:
         run: npm ci
 
       - name: Inject Tag Manager
+        env:
+          TAG_MANAGER_HEAD: ${{ secrets.TAG_MANAGER_HEAD }}
+          TAG_MANAGER_BODY: ${{ secrets.TAG_MANAGER_BODY }}
         run: |
           echo "Injecting full Tag Manager script using sed..."
           echo "Value of TAG_MANAGER_HEAD:"
