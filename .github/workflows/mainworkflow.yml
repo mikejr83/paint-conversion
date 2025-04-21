@@ -53,6 +53,8 @@ jobs:
       - name: Inject Tag Manager
         run: |
           echo "Injecting full Tag Manager script using sed..."
+          echo "Value of TAG_MANAGER_HEAD:"
+          echo "$TAG_MANAGER_HEAD"
           INDEX_FILE="src/index.html" # Assuming your index.html is directly in src
 
           # Ensure the index.html file exists
