@@ -53,11 +53,11 @@ jobs:
       - name: Inject Tag Manager
         env:
           TAG_MANAGER_HEAD: ${{ secrets.TAG_MANAGER_HEAD }}
-          TAG_MANAGER_BODY: ${{ secrets.TAG_MANAGER_BODY }}
         run: |
           echo "Injecting full Tag Manager script using sed..."
           echo "Value of TAG_MANAGER_HEAD:"
           echo "$TAG_MANAGER_HEAD"
+          echo "$TAG_MANAGER_BODY"
           INDEX_FILE="src/index.html" # Assuming your index.html is directly in src
 
           # Ensure the index.html file exists
