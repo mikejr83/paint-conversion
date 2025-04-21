@@ -52,26 +52,43 @@ jobs:
 
       - name: Inject Tag Manager
         run: |
-          sed -i "s|<head>|<head>$TAG_MANAGER_HEAD|" src/index.html
+          echo "Injecting full Tag Manager script using sed..."
+          INDEX_FILE="src/index.html" # Assuming your index.html is directly in src
+
+          # Ensure the index.html file exists
+          if [ -f "$INDEX_FILE" ]; then
+            HEAD_START_TAG="<head>"
+
+            # Escape special characters in the environment variable for sed
+            ESCAPED_TAG_MANAGER_HEAD=$(echo "$TAG_MANAGER_HEAD" | sed 's/[\/&$.*^]/\\&/g')
+
+            # Use sed to insert the escaped script after the <head> tag
+            sed -i "s|$HEAD_START_TAG|$HEAD_START_TAG\n  $ESCAPED_TAG_MANAGER_HEAD|" "$INDEX_FILE"
+            echo "Tag Manager script injected successfully!"
+          else
+            echo "Error: $INDEX_FILE not found."
+            exit 1
+          fi
+          
           sed -i "s|<app-root>|$TAG_MANAGER_BODY<app-root>|" src/index.html
           cat src/index.html
 
       - name: Build
         run: npm run build -- --base-href "/paint-conversion/"
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist/paint-conversion/browser
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v3
+#        with:
+#          path: ./dist/paint-conversion/browser
 
   # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+#  deploy:
+#    environment:
+#      name: github-pages
+#      url: ${{ steps.deployment.outputs.page_url }}
+#    runs-on: ubuntu-latest
+#    needs: build
+#    steps:
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v4
