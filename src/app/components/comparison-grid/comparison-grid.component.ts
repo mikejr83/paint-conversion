@@ -1,11 +1,10 @@
 import { PaintsService } from '@/app/services/paints.service';
 import { selectPaintComparisonState } from '@/app/store/reducers';
-import {
-  selectBrandEntities
-} from '@/app/store/selectors/brand.selector';
+import { selectBrandEntities } from '@/app/store/selectors/brand.selector';
 import { selectCurrentBrand } from '@/app/store/selectors/composite.selector';
 import { selectPaintNameFilter } from '@/app/store/selectors/filter.selector';
 import { Paint } from '@/models/paint';
+import { DecimalPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -21,7 +20,7 @@ interface PaintRow {
 
 @Component({
   selector: 'app-comparison-grid',
-  imports: [MatTableModule],
+  imports: [DecimalPipe, MatTableModule],
   templateUrl: './comparison-grid.component.html',
   styleUrl: './comparison-grid.component.scss',
 })
@@ -33,7 +32,10 @@ export class ComparisonGridComponent {
 
   borderSwatches = false;
 
-  constructor(private paintsService: PaintsService, store: Store) {
+  constructor(
+    private paintsService: PaintsService,
+    store: Store,
+  ) {
     const currentState$ = combineLatest([
       store.select(selectCurrentBrand),
       store.select(selectPaintComparisonState),
@@ -70,7 +72,11 @@ export class ComparisonGridComponent {
               ) {
                 if (
                   currentState.paintNameFilter &&
-                  paint.name.toLocaleLowerCase().indexOf(currentState.paintNameFilter.toLocaleLowerCase()) === -1
+                  paint.name
+                    .toLocaleLowerCase()
+                    .indexOf(
+                      currentState.paintNameFilter.toLocaleLowerCase(),
+                    ) === -1
                 ) {
                   return;
                 } else {

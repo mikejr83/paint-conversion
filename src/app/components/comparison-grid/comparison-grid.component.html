@@ -45,7 +45,8 @@
               ><br />
               {{ thePaint?.color }}
             </div>
-            <div>Delta E: {{ thePaint.matchStrength }}</div>
+            @let matchStrength = thePaint?.matchStrength ?? 0;
+            <div>Delta E: {{ matchStrength | number: "1.0-2" }}</div>
           }
         </td>
       </ng-container>
