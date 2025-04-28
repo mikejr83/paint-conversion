@@ -3,6 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 import { Store } from '@ngrx/store';
 import { map, Subject, takeUntil } from 'rxjs';
 
@@ -18,6 +19,7 @@ import { MobileCompareGridComponent } from '@/app/components/mobile-compare-grid
     ComparisonGridComponent,
     FilterComponent,
     MobileCompareGridComponent,
+    MatCardModule,
     MatSelectModule,
   ],
   templateUrl: './home-page.component.html',

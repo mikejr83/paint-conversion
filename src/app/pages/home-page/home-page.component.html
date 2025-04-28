@@ -1,13 +1,40 @@
 @let isHandsetView = this.isHandsetBreakpoint$ | async;
-<section>
+<section class="title" [class.mobile]="isHandsetView">
   <h1>Hobby Paint Conversion</h1>
+  <div class="welcome">
+    <mat-card class="title-card">
+      <mat-card-header>
+        <mat-card-title>Hobby Paint Conversion</mat-card-title>
+        <mat-card-subtitle>by MikeJr83</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Convert between different brands and series of paints.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-  <p>
+  <p class="description">
     This is a simple application to compare and convert between different brands
     and series of paints. The goal is to be able to inform hobbiests to be able
     to substitute paints from one brand for another.
   </p>
+</section>
 
+<div class="grid-and-filter-container">
+  <app-filter></app-filter>
+
+  @if (!isHandsetView) {
+    <app-comparison-grid> </app-comparison-grid>
+  } @else {
+    @defer (on viewport) {
+      <app-mobile-compare-grid></app-mobile-compare-grid>
+    } @placeholder {
+      <p>Loading...</p>
+    }
+  }
+</div>
+
+<section>
   <p>
     This application is inspired from the original work of
     <a
@@ -34,17 +61,6 @@
   </p>
 </section>
 
-<app-filter></app-filter>
-
-@if (!isHandsetView) {
-  <app-comparison-grid> </app-comparison-grid>
-} @else {
-  @defer (on viewport) {
-    <app-mobile-compare-grid></app-mobile-compare-grid>
-  } @placeholder {
-    <p>Loading...</p>
-  }
-}
 <section>
   <h2>More Info</h2>
   <p>

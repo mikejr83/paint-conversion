@@ -1,0 +1,28 @@
+.title {
+  margin-bottom: 2rem;
+  .welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.mobile {
+      display: none;
+    }
+
+    .title-card {
+      width: 450px;
+    }
+  }
+
+  .description {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    .welcome {
+      display: none;
+    }
+  }
+}
